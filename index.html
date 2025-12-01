@@ -4,20 +4,19 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Weather Dashboard</title>
-
-    <!-- Font Awesome -->
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
-    />
-
     <link rel="stylesheet" href="style.css" />
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap"
       rel="stylesheet"
     />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
   </head>
   <body class="dark-mode">
+    <div id="error-alert" class="error-alert"></div>
+
     <div class="dashboard-container">
       <!-- NAVBAR -->
       <header class="navbar">
@@ -25,9 +24,9 @@
           <button class="nav-icon-btn">
             <i class="fa-solid fa-location-dot"></i>
           </button>
-          <span id="current-city-display" class="current-location">
-            Seattle, Australia
-          </span>
+          <span id="current-city-display" class="current-location"
+            >Seattle, Australia</span
+          >
         </div>
 
         <div class="search-container">
@@ -46,7 +45,6 @@
         </div>
       </header>
 
-      <!-- MAIN GRID -->
       <main class="dashboard-grid">
         <!-- LEFT PANEL -->
         <section class="left-panel">
@@ -56,86 +54,63 @@
             <button id="tab-7days" class="tab-btn">Next 7 days</button>
           </div>
 
-          <!-- WEATHER CARDS -->
           <div class="weather-cards-container">
             <!-- PRIMARY CARD -->
-            <div class="weather-card primary-card active-card">
+            <div class="weather-card primary-card active-card" id="card-monday">
               <h3 class="day">Monday</h3>
               <p class="time">11:42 PM</p>
-
               <div class="temp-icon">
                 <span class="temp" id="current-temp">16°</span>
-                <span class="icon" id="current-icon">
-                  <i class="fa-solid fa-sun"></i>
-                </span>
+                <span class="icon" id="current-icon"
+                  ><i class="fa-solid fa-sun"></i
+                ></span>
               </div>
-
               <div class="details">
                 <p>Real feel: <span id="real-feel">18°</span></p>
-                <p>
-                  <i class="fa-solid fa-wind"></i> Wind:
-                  <span id="wind-speed">9 km/h</span>
-                </p>
-                <p>
-                  <i class="fa-solid fa-droplet"></i> Humidity:
-                  <span id="humidity">65%</span>
-                </p>
-                <p>
-                  <i class="fa-solid fa-gauge-high"></i> Pressure:
-                  <span id="pressure">1012 hPa</span>
-                </p>
-                <p>
-                  <i class="fa-regular fa-clock"></i> Sunrise:
-                  <span id="sunrise">6:02 AM</span>
-                </p>
-                <p>
-                  <i class="fa-regular fa-clock"></i> Sunset:
-                  <span id="sunset">8:10 PM</span>
-                </p>
+                <p>Wind: <span id="wind-speed">9 km/h</span></p>
+                <p>Humidity: <span id="humidity">65%</span></p>
+                <p>Pressure: <span id="pressure">1012 hPa</span></p>
+                <p>Sunrise: <span id="sunrise">6:02 AM</span></p>
+                <p>Sunset: <span id="sunset">8:10 PM</span></p>
               </div>
             </div>
 
-            <!-- DAILY CARDS -->
+            <!-- DAILY CARDS ROW -->
             <div class="daily-cards-row">
-              <div class="weather-card daily-card">
+              <div class="weather-card daily-card" id="card-tue">
                 <h4 class="day-small">Tue</h4>
                 <span class="icon-small"
                   ><i class="fa-solid fa-cloud"></i
                 ></span>
                 <p class="temp-small">10°</p>
               </div>
-
-              <div class="weather-card daily-card">
+              <div class="weather-card daily-card" id="card-wed">
                 <h4 class="day-small">Wed</h4>
                 <span class="icon-small"
                   ><i class="fa-solid fa-cloud-showers-heavy"></i
                 ></span>
                 <p class="temp-small">15°</p>
               </div>
-
-              <div class="weather-card daily-card">
+              <div class="weather-card daily-card" id="card-thu">
                 <h4 class="day-small">Thu</h4>
                 <span class="icon-small"
                   ><i class="fa-solid fa-cloud-sun"></i
                 ></span>
                 <p class="temp-small">11°</p>
               </div>
-
-              <div class="weather-card daily-card">
+              <div class="weather-card daily-card" id="card-fri">
                 <h4 class="day-small">Fri</h4>
                 <span class="icon-small"><i class="fa-solid fa-sun"></i></span>
                 <p class="temp-small">18°</p>
               </div>
-
-              <div class="weather-card daily-card">
+              <div class="weather-card daily-card" id="card-sat">
                 <h4 class="day-small">Sat</h4>
                 <span class="icon-small"
                   ><i class="fa-solid fa-cloud-showers-heavy"></i
                 ></span>
                 <p class="temp-small">12°</p>
               </div>
-
-              <div class="weather-card daily-card">
+              <div class="weather-card daily-card" id="card-sun">
                 <h4 class="day-small">Sun</h4>
                 <span class="icon-small"
                   ><i class="fa-solid fa-cloud"></i
@@ -145,14 +120,22 @@
             </div>
           </div>
 
-          <!-- MAP -->
+          <!-- GLOBAL MAP -->
           <div class="global-map-area">
             <h3 class="global-map-title">Global map</h3>
-            <div class="map-placeholder">
-              <div class="map-overlay-card">
-                <h4>Explore global weather & ocean conditions</h4>
-                <button class="get-started-btn">Get started</button>
+            <div class="map-content">
+              <div class="map-placeholder">
+                <div class="map-overlay-card">
+                  <h4>
+                    Explore global map of wind, weather and oceans conditions
+                  </h4>
+                  <button class="get-started-btn">Get started</button>
+                </div>
+                <span class="map-marker-primary" style="top: 75%; left: 70%">
+                  <i class="fa-solid fa-location-dot"></i>
+                </span>
               </div>
+              <button class="view-wide-btn">View wide ✨</button>
             </div>
           </div>
         </section>
@@ -164,66 +147,111 @@
               Forecast
             </button>
             <button id="info-air-quality" class="info-tab-btn">
-              Air Quality
+              Air quality
             </button>
           </div>
 
-          <div class="chart-container">
-            <h3><i class="fa-solid fa-cloud-rain"></i> Chance of Rain</h3>
-
-            <div class="bars-wrapper">
-              <div class="bar-group">
-                <div class="bar" style="height: 50%"></div>
-                <p>10AM</p>
+          <!-- RAIN CHART -->
+          <div class="chart-container" id="forecast-details-section">
+            <h3>Chance of rain</h3>
+            <div class="rain-chart" id="rain-chart">
+              <div class="chart-label-row top-label-row">
+                <span>High</span><span>Medium</span><span>Low</span>
               </div>
-
-              <div class="bar-group">
-                <div class="bar" style="height: 80%"></div>
-                <p>11AM</p>
+              <div class="bars-wrapper">
+                <div class="bar-group">
+                  <div class="bar-wrap">
+                    <div class="bar" style="height: 50%"></div>
+                  </div>
+                  <div class="bar-label">10AM</div>
+                </div>
+                <div class="bar-group">
+                  <div class="bar-wrap">
+                    <div class="bar" style="height: 80%"></div>
+                  </div>
+                  <div class="bar-label">11AM</div>
+                </div>
+                <div class="bar-group">
+                  <div class="bar-wrap">
+                    <div class="bar" style="height: 30%"></div>
+                  </div>
+                  <div class="bar-label">12PM</div>
+                </div>
+                <div class="bar-group">
+                  <div class="bar-wrap">
+                    <div class="bar" style="height: 70%"></div>
+                  </div>
+                  <div class="bar-label">01PM</div>
+                </div>
+                <div class="bar-group">
+                  <div class="bar-wrap">
+                    <div class="bar" style="height: 60%"></div>
+                  </div>
+                  <div class="bar-label">02PM</div>
+                </div>
+                <div class="bar-group">
+                  <div class="bar-wrap">
+                    <div class="bar" style="height: 40%"></div>
+                  </div>
+                  <div class="bar-label">03PM</div>
+                </div>
               </div>
+            </div>
 
-              <div class="bar-group">
-                <div class="bar" style="height: 30%"></div>
-                <p>12PM</p>
-              </div>
-
-              <div class="bar-group">
-                <div class="bar" style="height: 70%"></div>
-                <p>01PM</p>
-              </div>
+            <div id="air-quality-details" style="display: none">
+              <p class="text-secondary">
+                Air Quality Index (AQI):
+                <span class="aqi-value">Good (45)</span>
+              </p>
             </div>
           </div>
 
           <!-- OTHER CITIES -->
           <div class="other-cities-container">
-            <h3>Other Large Cities</h3>
-
-            <div class="city-item">
-              <div>
-                <p>California</p>
-                <small>Mostly Sunny</small>
-              </div>
-              <div class="city-temp-icon">
-                <p class="temp">29°</p>
-                <span class="icon"><i class="fa-solid fa-sun"></i></span>
-              </div>
+            <div class="cities-header">
+              <h3>Other large cities</h3>
+              <button class="show-all-btn">Show All ></button>
             </div>
-
-            <div class="city-item">
-              <div>
-                <p>Beijing</p>
-                <small>Cloudy</small>
+            <div id="city-list" class="city-list">
+              <div class="city-item">
+                <div class="city-name-cond">
+                  <h4>US</h4>
+                  <p>California</p>
+                  <p class="condition">Mostly Sunny</p>
+                </div>
+                <div class="city-temp-icon">
+                  <p class="temp">29°</p>
+                  <span class="icon"><i class="fa-solid fa-sun"></i></span>
+                </div>
               </div>
-              <div class="city-temp-icon">
-                <p class="temp">19°</p>
-                <span class="icon"><i class="fa-solid fa-cloud"></i></span>
+
+              <div class="city-item">
+                <div class="city-name-cond">
+                  <h4>China</h4>
+                  <p>Beijing</p>
+                  <p class="condition">Cloudy</p>
+                </div>
+                <div class="city-temp-icon">
+                  <p class="temp">19°</p>
+                  <span class="icon"><i class="fa-solid fa-cloud"></i></span>
+                </div>
+              </div>
+
+              <div class="city-item">
+                <div class="city-name-cond">
+                  <h4>Israel</h4>
+                  <p>Jerusalem</p>
+                  <p class="condition">Sunny</p>
+                </div>
+                <div class="city-temp-icon">
+                  <p class="temp">31°</p>
+                  <span class="icon"><i class="fa-solid fa-sun"></i></span>
+                </div>
               </div>
             </div>
           </div>
         </aside>
       </main>
     </div>
-
-    <script src="script.js"></script>
   </body>
 </html>
