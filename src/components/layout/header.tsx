@@ -3,7 +3,7 @@ import Link from "next/link";
 
 const Header = () => {
   return (
-    <header className="flex items-center justify-between whitespace-nowrap px-6 lg:px-10 py-3 sticky top-0 z-10 bg-background-dark backdrop:blur-sm">
+    <header className="flex items-center justify-between whitespace-nowrap px-6 lg:px-10 py-3 sticky top-0 z-10 bg-background-dark backdrop:blur-sm border-b border-b-gray-800">
       <div className="flex items-center gap-8">
         <div className="flex items-center gap-2">
           <div className="size-6 text-text-light">
