@@ -4,7 +4,7 @@ const Footer = () => {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
         <div>
           <div className="flex items-center gap-4 mb-3">
-            <div className="size-6 text-text-light">
+            <div className="size-6 text-text-primary">
               <svg
                 fill="currentColor"
                 viewBox="0 0 48 48"
@@ -24,34 +24,22 @@ const Footer = () => {
           <h3 className="text-text-light font-semibold mb-3">Quick Links</h3>
           <ul className="space-y-2 text-sm text-primary">
             <li>
-              <a
-                className="hover:text-secondary-blue transition-colors"
-                href="#"
-              >
+              <a className="hover:text-text-blue transition-colors" href="#">
                 Home
               </a>
             </li>
             <li>
-              <a
-                className="hover:text-secondary-blue transition-colors"
-                href="#"
-              >
+              <a className="hover:text-text-blue transition-colors" href="#">
                 Catalog
               </a>
             </li>
             <li>
-              <a
-                className="hover:text-secondary-blue transition-colors"
-                href="#"
-              >
+              <a className="hover:text-text-blue transition-colors" href="#">
                 Our Store
               </a>
             </li>
             <li>
-              <a
-                className="hover:text-secondary-blue transition-colors"
-                href="#"
-              >
+              <a className="hover:text-text-blue transition-colors" href="#">
                 Contact
               </a>
             </li>
@@ -64,34 +52,22 @@ const Footer = () => {
           </h3>
           <ul className="space-y-2 text-sm">
             <li>
-              <a
-                className="hover:text-secondary-blue transition-colors"
-                href="#"
-              >
+              <a className="hover:text-text-blue transition-colors" href="#">
                 FAQ
               </a>
             </li>
             <li>
-              <a
-                className="hover:text-secondary-blue transition-colors"
-                href="#"
-              >
+              <a className="hover:text-text-blue transition-colors" href="#">
                 Shipping & Returns
               </a>
             </li>
             <li>
-              <a
-                className="hover:text-secondary-blue transition-colors"
-                href="#"
-              >
+              <a className="hover:text-text-blue transition-colors" href="#">
                 Privacy Policy
               </a>
             </li>
             <li>
-              <a
-                className="hover:text-secondary-blue transition-colors"
-                href="#"
-              >
+              <a className="hover:text-text-blue transition-colors" href="#">
                 Terms of Service
               </a>
             </li>
@@ -110,7 +86,7 @@ const Footer = () => {
               type="email"
             />
             <button
-              className="bg-secondary-blue text-text-light px-4 rounded-r-lg transition-colors"
+              className="bg-text-blue text-text-light px-4 rounded-r-lg transition-colors"
               type="submit"
             >
               Subscribe

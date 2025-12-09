@@ -6,7 +6,7 @@ interface CategoriesSectionProps {
 
 const CategoryCard: React.FC<CategoriesSectionProps> = ({ category }) => {
   return (
-    <div className="group bg-[#1d2536] border-[1px solid rgba(191, 191, 197, 0.1)] flex flex-col gap-3 rounded-xl p-3 pb-4 shadow-sm hover:shadow-xl transition-all duration-300 cursor-pointer">
+    <div className="group bg-card-bg border border-border-light flex flex-col gap-3 rounded-xl p-3 pb-4 shadow-sm hover:shadow-xl transition-all duration-300 cursor-pointer">
       <div className="relative w-full aspect-square rounded-lg overflow-hidden">
         <img
           src={category.image}
@@ -17,10 +17,10 @@ const CategoryCard: React.FC<CategoriesSectionProps> = ({ category }) => {
       </div>
       <div className="flex items-start justify-between">
         <div>
-          <p className="text-base font-medium text-[#edeff5]">
+          <p className="text-base font-medium text-text-light">
             {category.title}
           </p>
-          <p className="text-sm font-normal text-[#bfbfc5]">
+          <p className="text-sm font-normal text-text-muted">
             {category.itemCount} items
           </p>
         </div>

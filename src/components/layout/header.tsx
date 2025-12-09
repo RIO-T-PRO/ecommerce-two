@@ -6,7 +6,7 @@ const Header = () => {
     <header className="flex items-center justify-between whitespace-nowrap px-6 lg:px-10 py-3 sticky top-0 z-10 bg-background-dark backdrop:blur-sm border-b border-b-gray-800">
       <div className="flex items-center gap-8">
         <div className="flex items-center gap-2">
-          <div className="size-6 text-text-light">
+          <div className="size-6 text-text-primary">
             <svg
               fill="currentColor"
               viewBox="0 0 48 48"
@@ -21,25 +21,25 @@ const Header = () => {
           </h2>
         </div>
 
-        <nav className="flex items-center gap-6 text-primary font-medium">
-          <Link href="/" className="hover:text-secondary-blue">
+        <nav className="flex items-center gap-6 text-text-muted font-medium">
+          <Link href="/" className="hover:text-text-blue">
             Home
           </Link>
 
-          <Link href="#" className="hover:text-secondary-blue">
+          <Link href="#" className="hover:text-text-blue">
             Products
           </Link>
-          <Link href="#" className="hover:text-secondary-blue">
+          <Link href="#" className="hover:text-text-blue">
             About
           </Link>
-          <Link href="#" className="hover:text-secondary-blue">
+          <Link href="#" className="hover:text-text-blue">
             Contact
           </Link>
         </nav>
       </div>
 
       <div className="flex items-center gap-4.5">
-        <button className="flex items-center justify-center rounded-lg px-4 h-10 bg-secondary-blue whitespace-nowrap text-text-light cursor-pointer">
+        <button className="flex items-center justify-center rounded-lg px-4 h-10 bg-text-blue whitespace-nowrap text-text-light cursor-pointer">
           Sign up
         </button>
         <button className="flex items-center justify-center rounded-lg px-3 h-10 bg-transparent text-gray-600 dark:text-gray-300 hover:bg-gray-500/10 border border-gray-500 cursor-pointer">
@@ -47,7 +47,7 @@ const Header = () => {
         </button>
         <button className="relative flex items-center justify-center rounded-lg h-10 bg-transparent text-gray-600 dark:text-gray-300 hover:bg-gray-500/10 px-3 border border-gray-500 cursor-pointer">
           <ShoppingCart size={18} />
-          <span className="absolute -top-1 -right-1 flex h-4 w-4 items-center justify-center rounded-full bg-secondary-blue text-[10px] font-bold text-text-light">
+          <span className="absolute -top-1 -right-1 flex h-4 w-4 items-center justify-center rounded-full bg-text-blue text-[10px] font-bold text-text-light">
             3
           </span>
         </button>

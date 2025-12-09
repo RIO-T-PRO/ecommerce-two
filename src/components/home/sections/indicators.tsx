@@ -14,8 +14,8 @@ const TrustIndicators = () => {
         const IconComponent = indicator.icon;
         return (
           <div key={indicator.text} className="flex items-center gap-2">
-            <IconComponent size={16} className="text-[#3f3fdd] shrink-0" />
-            <p className="text-sm text-[#edeff5]">{indicator.text}</p>
+            <IconComponent size={16} className="text-text-primary shrink-0" />
+            <p className="text-sm text-text-light">{indicator.text}</p>
           </div>
         );
       })}

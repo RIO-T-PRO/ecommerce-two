@@ -14,7 +14,7 @@ export default function Home() {
           <StatsWidget />
           <TestimonialsSection />
           <div>
-            <h3 className="text-2xl font-bold mb-8 text-[#edeff5]">
+            <h3 className="text-2xl font-bold mb-8 text-text-light">
               Why Shop With Us
             </h3>
             <TrustIndicators />

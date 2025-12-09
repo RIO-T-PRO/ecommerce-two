@@ -6,10 +6,10 @@ const CategorySection = () => {
     <div className="mb-20">
       <div className="flex flex-wrap justify-between items-baseline gap-4 mb-6">
         <div className="flex flex-col gap-2">
-          <h1 className="text-4xl sm:text-5xl font-black tracking-tight text-[#edeff5]">
+          <h1 className="text-4xl sm:text-5xl font-semibold tracking-tight text-text-light">
             Categories
           </h1>
-          <p className="text-base font-normal text-[#bfbfc5]">
+          <p className="text-base font-normal text-text-muted">
             Explore our wide range of product categories.
           </p>
         </div>

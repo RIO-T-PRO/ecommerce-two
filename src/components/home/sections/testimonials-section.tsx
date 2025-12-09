@@ -1,7 +1,7 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import TestimonialCard from "./cards/testimonialCard";
+import { useState } from "react";
+import TestimonialCard from "../cards/testimonialCard";
 import { Testimonial, testimonialsData } from "@/data/testimonials";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 

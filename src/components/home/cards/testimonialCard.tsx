@@ -8,22 +8,20 @@ interface TestimonialProps {
 
 const TestimonialCard: React.FC<TestimonialProps> = ({ testimonial }) => {
   return (
-    <div className="flex flex-col gap-4 rounded-2xl p-6 backdrop-blur-sm transition-all duration-300 bg-[#1d2536] border-[1px solid rgba(191, 191, 197, 0.1)]]">
+    <div className="flex flex-col gap-4 rounded-2xl p-6 backdrop-blur-sm transition-all duration-300 bg-section-bg border border-border-light">
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-3">
           <img
             src={testimonial.avatar}
             alt={testimonial.name}
             className="w-12 h-12 rounded-full object-cover"
-            style={{ boxShadow: `0 0 0 2px #3f3fdd` }}
+            style={{ boxShadow: `0 0 0 2px text-text-primary` }}
           />
           <div>
-            <p className="font-semibold text-sm" style={{ color: "#edeff5" }}>
+            <p className="font-semibold text-sm text-text-light">
               {testimonial.name}
             </p>
-            <p className="text-xs" style={{ color: "#bfbfc5" }}>
-              {testimonial.role}
-            </p>
+            <p className="text-xs text-text-muted">{testimonial.role}</p>
           </div>
         </div>
         <div className="flex gap-0.5">
@@ -31,15 +29,16 @@ const TestimonialCard: React.FC<TestimonialProps> = ({ testimonial }) => {
             <Star
               key={i}
               size={14}
-              style={{
-                fill: i < testimonial.rating ? "#3f3fdd" : "none",
-                color: i < testimonial.rating ? "#3f3fdd" : "#bfbfc5",
-              }}
+              className={
+                i < testimonial.rating
+                  ? "text-text-primary fill-text-primary"
+                  : "text-text-muted fill-none"
+              }
             />
           ))}
         </div>
       </div>
-      <p className="text-sm leading-relaxed text-[#edeff5]">
+      <p className="text-sm leading-relaxed text-text-light">
         {testimonial.content}
       </p>
     </div>
