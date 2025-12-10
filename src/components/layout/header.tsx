@@ -29,10 +29,10 @@ const Header = () => {
           <Link href="/products" className="hover:text-text-blue">
             Products
           </Link>
-          <Link href="#" className="hover:text-text-blue">
+          <Link href="/about" className="hover:text-text-blue">
             About
           </Link>
-          <Link href="#" className="hover:text-text-blue">
+          <Link href="/contact" className="hover:text-text-blue">
             Contact
           </Link>
         </nav>
@@ -51,7 +51,7 @@ const Header = () => {
             3
           </span>
         </button>
-        <Link href="#">
+        <Link href="/user-profile">
           <div>
             <img
               src="https://lh3.googleusercontent.com/aida-public/AB6AXuCxOYrA8x__3bham69-kGm2hkfZhyXPvF3wKOg56Sdv-tqRX4UzZUyFd8fI3qOJ_MNaVo_Gm5ORsESKZXx7p1T2AHnHfmvZmKWjnhA7JmyX-mAh0RE0BoEP_CIyRMxC80jvv-BMyvJHLy8DYhVnhOepisgNw_nlcs_vUa_OEYybBE43Xagh80VlYj4iE0h38NX4qlfDCwSl0v1knMHuL-XucE9NjhYYupH-wCWaULS3_XG7YiUVO5cDPwUgrla39tKbqJ_Tcdmwk-o"
