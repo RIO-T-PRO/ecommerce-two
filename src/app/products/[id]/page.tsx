@@ -99,18 +99,6 @@ const ProductDetailsPage = () => {
             <p className="text-text-light text-4xl font-bold">$200.00</p>
 
             <div className="flex flex-col gap-3">
-              <h3 className="text-text-light font-medium">
-                Color: <span className="text-text-muted">Green</span>
-              </h3>
-              <div className="flex items-center gap-2">
-                <button className="size-8 rounded-full bg-green-500 ring-2 ring-offset-2 ring-offset-background-dark ring-text-blue" />
-                <button className="size-8 rounded-full bg-pink-500 hover:ring-2 ring-white/50" />
-                <button className="size-8 rounded-full bg-blue-500 hover:ring-2 ring-white/50" />
-                <button className="size-8 rounded-full bg-linear-to-br from-red-500 to-yellow-500 hover:ring-2 ring-white/50" />
-              </div>
-            </div>
-
-            <div className="flex flex-col gap-3">
               <h3 className="text-text-light font-medium">Size:</h3>
               <div className="flex flex-wrap items-center gap-2">
                 <button className="flex items-center justify-center px-4 py-2 rounded-lg bg-white/10 text-text-muted text-sm font-semibold hover:bg-white/20">
