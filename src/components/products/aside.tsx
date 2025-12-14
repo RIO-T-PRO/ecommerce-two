@@ -1,105 +1,156 @@
+"use client";
+
+import { useProduct } from "@/context/app-context";
+import { products } from "@/data/products";
 import { Search, Star } from "lucide-react";
+import { ChangeEvent, useEffect, useState } from "react";
 
 const Aside = () => {
-  const colorOptions = [
-    { name: "Black", hex: "#000000" },
-    { name: "White", hex: "#FFFFFF" },
-    { name: "Red", hex: "#EF4444" },
-    { name: "Blue", hex: "#3B82F6" },
-    { name: "Green", hex: "#10B981" },
-    { name: "Purple", hex: "#8B5CF6" },
-  ];
+  const { setProductData } = useProduct();
+
+  const [selectedCategory, setSelectedCategory] = useState<string[]>([]);
+  const [selectedSize, setSelectedSize] = useState<string[]>([]);
+  const [search, setSearch] = useState<string>("");
+  const [isActive, setIsActive] = useState<boolean>(false);
+  const [priceRange, setPriceRange] = useState({
+    min: 0,
+    max: 1000,
+    currentValue: 500,
+  });
+
+  const handlePriceChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const value = Number(e.target.value);
+    setPriceRange((prev) => ({ ...prev, currentValue: value }));
+  };
+
+  const handleSearch = (e: ChangeEvent<HTMLInputElement>) => {
+    setSearch(e.target.value);
+  };
+
+  const categories = [...new Set(products.map((product) => product.category))];
+  const sizes = [...new Set(products.map((product) => product.size))];
+
+  const toggleCategory = (category: string) => {
+    setSelectedCategory((prev) =>
+      prev.includes(category)
+        ? prev.filter((cat) => cat !== category)
+        : [...prev, category]
+    );
+  };
+
+  const toggleSizes = (size: string) => {
+    setSelectedSize((prev) =>
+      prev.includes(size) ? prev.filter((s) => s !== size) : [...prev, size]
+    );
+
+    setIsActive(true);
+  };
+
+  // Move the filtering logic to useEffect
+  useEffect(() => {
+    const filtered = products.filter((product) => {
+      const matchCategory =
+        selectedCategory.length === 0 ||
+        selectedCategory.includes(product.category);
+
+      const matchSize =
+        selectedSize.length === 0 || selectedSize.includes(product.size);
+
+      const matchRange = product.price <= priceRange.currentValue;
+
+      const matchSearch =
+        product.name.toLowerCase().includes(search.toLowerCase()) ||
+        product.category.toLowerCase().includes(search.toLowerCase());
+
+      return matchCategory && matchSize && matchSearch && matchRange;
+    });
+
+    setProductData(filtered);
+  }, [
+    selectedCategory,
+    selectedSize,
+    search,
+    priceRange.currentValue,
+    setProductData,
+  ]); // Add dependencies
 
   return (
     <div>
-      <aside className="hidden xl:block w-80 border-r border-[rgba(191,191,197,0.1)] p-6 space-y-2 sticky top-[73px] h-[calc(100vh-73px)] overflow-y-visible bg-[#101622]">
-        <div className="flex items-center rounded-lg h-10 bg-[#1d2536] border border-[rgba(191,191,197,0.1)]">
-          <Search className="w-5 h-5 text-[#bfbfc5] ml-3" />
+      <aside className="hidden xl:block w-80 border-r border-border-light p-6 space-y-2 sticky top-[73px] h-[calc(100vh-73px)] overflow-y-visible bg-[#101622]">
+        <div className="flex items-center rounded-lg h-10 bg-section-bg border border-border-light">
+          <Search className="w-5 h-5 text-text-muted ml-3" />
           <input
+            onChange={handleSearch}
             type="text"
             placeholder="Search within results"
-            className="flex-1 bg-transparent border-none px-3 text-white placeholder-[#bfbfc5] focus:outline-none text-sm"
+            className="flex-1 bg-transparent border-none px-3 text-white placeholder-text-muted focus:outline-none text-sm"
           />
         </div>
 
         <div className="space-y-1.5">
-          <h3 className="text-[#edeff5] font-semibold">Price Range</h3>
+          <h3 className="text-text-light font-semibold">Price Range</h3>
           <input
             type="range"
             min="0"
             max="1000"
-            defaultValue="500"
-            className="w-full h-2 bg-[#1d2536] rounded-lg accent-[#3f3fdd] cursor-pointer"
+            value={priceRange.currentValue}
+            onChange={handlePriceChange}
+            className="w-full h-2 bg-section-bg rounded-lg accent-text-blue cursor-pointer"
           />
-          <div className="flex justify-between text-sm text-[#bfbfc5]">
+          <div className="flex justify-between text-sm text-text-muted">
             <span>$0</span>
-            <span>$1000+</span>
+            <span>{priceRange.currentValue}</span>
           </div>
         </div>
 
         <div className="space-y-1.5">
-          <h3 className="text-[#edeff5] font-semibold">Category</h3>
-          <div className="space-y-2 text-sm text-[#bfbfc5]">
-            {["Men", "Women", "Kids", "Accessories", "Shoes"].map(
-              (cat, idx) => (
-                <label
-                  key={cat}
-                  className="flex items-center cursor-pointer hover:text-[#edeff5]"
-                >
-                  <input
-                    type="checkbox"
-                    defaultChecked={cat === "Women"}
-                    className="w-4 h-4 rounded bg-[#1d2536] border border-[rgba(191,191,197,0.3)] text-[#3f3fdd] cursor-pointer"
-                  />
-                  <span className="ml-3">{cat}</span>
-                </label>
-              )
-            )}
-          </div>
-        </div>
-
-        <div className="space-y-1.5">
-          <h3 className="text-[#edeff5] font-semibold">Color</h3>
-          <div className="flex flex-wrap gap-3">
-            {colorOptions.map((color) => (
-              <button
-                key={color.name}
-                className="w-6 h-6 rounded-full border-2 border-[rgba(191,191,197,0.2)] hover:border-[#3f3fdd] transition-colors"
-                style={{ backgroundColor: color.hex }}
-                title={color.name}
-              />
+          <h3 className="text-text-light font-semibold">Category</h3>
+          <div className="space-y-2 text-sm text-text-muted">
+            {categories.map((item, index) => (
+              <label
+                key={index}
+                className="flex items-center cursor-pointer hover:text-text-light"
+              >
+                <input
+                  onChange={() => toggleCategory(item)}
+                  type="checkbox"
+                  className="w-4 h-4 rounded bg-section-bg border border-[rgba(191,191,197,0.3)] text-text-blue cursor-pointer"
+                />
+                <span className="ml-3">{item}</span>
+              </label>
             ))}
           </div>
         </div>
 
-        {/* Sizes */}
-        <div className="space-y-1.5">
-          <h3 className="text-[#edeff5] font-semibold">Size</h3>
-          <div className="flex flex-wrap gap-2 text-sm">
-            {/* {sizeOptions.map(size => (
-                <button key={size} className={`px-3 py-1 rounded-lg transition-colors ${size === 'S' ? 'bg-[#3f3fdd] text-white' : 'bg-[#1d2536] text-[#edeff5] hover:bg-[#3f3fdd]'}`}>
-                  {size}
-                </button>
-              ))} */}
-          </div>{" "}
-          size
-        </div>
+        <div className="flex flex-wrap gap-2 text-sm">
+          <button
+            onClick={() => setSelectedSize([])}
+            className={`px-3 py-1 rounded-lg transition-colors ${
+              selectedSize.length === 0
+                ? "bg-primary text-text-light"
+                : "bg-section-bg text-text-light hover:bg-primary"
+            }`}
+          >
+            All
+          </button>
 
-        {/* Recently Viewed */}
-        <div className="space-y-2">
-          <h3 className="text-[#edeff5] font-semibold">Recently Viewed</h3>
-          <div className="space-y-3">
-            {/* {recentlyViewed.map(item => (
-                <div key={item.id} className="flex items-center gap-3">
-                  <img src={item.image} alt={item.name} className="w-12 h-12 rounded-lg object-cover" />
-                  <div className="min-w-0 flex-1">
-                    <p className="text-[#edeff5] text-sm font-medium truncate">{item.name}</p>
-                    <p className="text-[#bfbfc5] text-xs">${item.price.toFixed(2)}</p>
-                  </div>
-                </div>
-              ))} */}{" "}
-            recently viewed
-          </div>
+          {sizes.map((size) => {
+            const active = selectedSize.includes(size);
+
+            return (
+              <button
+                key={size}
+                onClick={() => toggleSizes(size)}
+                className={`px-3 py-1 rounded-lg transition-colors ${
+                  active
+                    ? "bg-primary text-text-light"
+                    : "bg-section-bg text-text-light hover:bg-primary"
+                }`}
+              >
+                {size}
+              </button>
+            );
+          })}
         </div>
       </aside>
     </div>
