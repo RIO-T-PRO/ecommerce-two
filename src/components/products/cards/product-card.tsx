@@ -1,5 +1,6 @@
-import { Heart, Link, Star } from "lucide-react";
+import { Heart, Star } from "lucide-react";
 import { ProductsData } from "@/data/products";
+import Link from "next/link";
 
 interface ProductCardProps {
   product: ProductsData;

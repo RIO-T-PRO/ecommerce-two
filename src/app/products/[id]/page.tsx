@@ -1,5 +1,6 @@
 "use client";
 
+import { products } from "@/data/products";
 import {
   Star,
   StarHalf,
@@ -10,96 +11,106 @@ import {
   Minus,
   ShoppingBag,
 } from "lucide-react";
+import Link from "next/link";
+import { useParams } from "next/navigation";
+import { useState } from "react";
 
-const ProductDetailsPage = () => {
+const Page = () => {
+  const params = useParams();
+  const { id } = params;
+
+  const product = products.find((item) => item.id === id);
+
+  const [selectedImage, setselectedImage] = useState(product?.images[0]);
+
   return (
     <div className="min-h-screen bg-background-dark">
-      <main className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+      <main className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
         <div className="mb-6">
           <div className="flex flex-wrap gap-2">
-            <a
+            <Link
               className="text-text-muted text-sm font-medium leading-normal hover:text-text-light"
-              href="#"
+              href="/"
             >
               Home
-            </a>
+            </Link>
             <span className="text-text-muted text-sm font-medium leading-normal">
               /
             </span>
-            <a
+            <Link
               className="text-text-muted text-sm font-medium leading-normal hover:text-text-light"
-              href="#"
+              href="/products"
             >
-              Jackets
-            </a>
+              Products
+            </Link>
             <span className="text-text-muted text-sm font-medium leading-normal">
               /
             </span>
             <span className="text-text-light text-sm font-medium leading-normal">
-              Unisex Printed Quilted Jacket
+              {product?.name}
             </span>
           </div>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-          <div className="flex flex-col gap-4">
-            <img
-              src="https://lh3.googleusercontent.com/aida-public/AB6AXuBIedGwwA-O7w3LX5ilh-g2cqyOInCPeAGCbOFNR1xMIO2JF2X06f7QcbfS6ssO2xP0w13lAnJ-TVzHjPCMhn-uOsAGMnG8JCPCM7Xbvmuuld0L61VLvqJHt0s_zGhaCpFPgqiTMZ_idgWCvf1DEylnBShscZmLr3JdlQ3Z6nqV4DvGWimAFc8vMSLpG1b5d7QEzWf72puWLsm0qpqPyFYADb55nqkOvor4yLTWvdXUyx5YzPsOx51C4qs9ovHhfFqeVVaZa9gsKh4"
-              alt="Main image of a unisex printed quilted jacket"
-              className="w-full aspect-square rounded-xl object-cover"
-            />
+        <div className="grid grid-cols-1 lg:grid-cols-5 gap-6">
+          <div className="flex flex-col col-span-2 gap-6">
+            <div className="h-100 w-full border-2 border-text-blue rounded-xl">
+              <img
+                src={selectedImage}
+                alt={product?.name}
+                className="h-full w-full rounded-xl object-cover"
+              />
+            </div>
 
-            <div className="grid grid-cols-4 gap-4">
-              <img
-                src="https://lh3.googleusercontent.com/aida-public/AB6AXuAVVSstcdx9uVIueoxiHWSLHZ8h2_1DWJ-XB87P6eALd-Xuc1iqx6CAKaXqoKY0InlpcQw75tm0XlQpp1Qeqc9Da4mNqaS6kx0Ji83XZXVL5UMnpOucLvF9HXkHMK40UnabApV9oVXcnwN5ODZ7yJga_pkpSR-084cGB5tBtGwT6bB6SVdKkJSrKHbD549ecxzFGKBsAMg_eAgRbxKsCp2gaFExSn2EP_tnMyktGoQiz46VuyEazoBqTHzbk7Ki_XgTQ-bUKnOJGqU"
-                alt="Jacket thumbnail image 1"
-                className="w-full aspect-square rounded-lg border-2 border-text-blue cursor-pointer object-cover"
-              />
-              <img
-                src="https://lh3.googleusercontent.com/aida-public/AB6AXuDnJCVaUVWn1_nRbiVLX2wkT5kQsFYHBUoc0gMXeyf6G5gJJ96pZLYbjiF1_sN3XJt4ymQsYYQSEmqTFG5h8IKohWoMIwSCGNxbPXKm45Uf5IxgC7Zb8SRPKs6D31_PuAG3vhtVAVhj9EQIk9CH5fUqfywpROfJiszoArbTEChYe8KviRw5TVSsSK8-7FNVf4VTh6r6Nf0agrxSHQc83isv1Mos-g1ktavRHUxu0_dDNH3cN9lUbTizfNg92ftWp0NJpVVJc2_MCE4"
-                alt="Jacket thumbnail image 2"
-                className="w-full aspect-square rounded-lg opacity-60 hover:opacity-100 cursor-pointer object-cover"
-              />
-              <img
-                src="https://lh3.googleusercontent.com/aida-public/AB6AXuCqLKd-hoU95M_38--rEYuprYJwCbZgv9R8DKcDtuCW8JdFRL3ROoM3R5yHbvw-F7WP5vkyhgGWPg_GrOn-Oyp5k_1BEcIUtX3FgA8mr8Fff7xg3BC9TaR2Z_atuc1vMBAAG5oDWbq3qXy7xhypjB0O_EGPbC8gVgwvAQoZUkWSrencEXfbUj_yn6QW2_8JoSLLhqYqPeeeMYlsgbgF-sfBylaX07okqzvNDAHnuCfk6lfH_0rJw_q14OjQQQppu5iSh-dU06DsN3s"
-                alt="Jacket thumbnail image 3"
-                className="w-full aspect-square rounded-lg opacity-60 hover:opacity-100 cursor-pointer object-cover"
-              />
-              <img
-                src="https://lh3.googleusercontent.com/aida-public/AB6AXuD6SmULFzEWi_asbM5Rnrj7QNYIv8OswHHm0EJwDam7Defs4i8GhwCwn-3HaVSf1tUYwYmoh6lb0mhT50M1ON0DVSNP9lnNard2bqgCGr83-QQhy5Cv6p9k9Xnbf4oN3VcJr2aiKkHGOpg5wI4abK--h7lbt4eqTI_t3n-w6l3ekU59aoJZhFstqDGKUmVMeZklk2BMRyVD-2_ppFpWD9L3BrXrX8IC2-Wcbvsl_gP6uqsTyHIqfuXxqNKHT8paxsFXX7ATuKTmW9s"
-                alt="Jacket thumbnail image 4"
-                className="w-full aspect-square rounded-lg opacity-60 hover:opacity-100 cursor-pointer object-cover"
-              />
+            <div className="grid grid-cols-4 gap-2">
+              {product?.images.map((image, index) => (
+                <div onClick={() => setselectedImage(image)} key={index}>
+                  <img
+                    src={image}
+                    alt={`${product.name} ${index + 1}`}
+                    className={`size-full rounded-lg border-2 ${
+                      selectedImage === image
+                        ? "border-text-blue"
+                        : "border-white"
+                    } cursor-pointer object-contain`}
+                  />
+                </div>
+              ))}
             </div>
           </div>
 
-          <div className="flex flex-col gap-6">
+          <div className="flex flex-col col-span-3 gap-6">
             <div>
               <h1 className="text-text-light text-3xl md:text-4xl font-black leading-tight tracking-[-0.033em]">
-                Unisex Printed Quilted Jacket
+                {product?.name}
               </h1>
               <div className="flex items-center gap-2 mt-3">
-                <div className="flex text-yellow-400">
-                  <Star className="w-5 h-5 fill-current" />
-                  <Star className="w-5 h-5 fill-current" />
-                  <Star className="w-5 h-5 fill-current" />
-                  <Star className="w-5 h-5 fill-current" />
-                  <StarHalf className="w-5 h-5 fill-current" />
-                </div>
+                {product?.rating && (
+                  <div className="flex text-yellow-400">
+                    {Array.from({ length: Math.floor(product.rating) }).map(
+                      (_, index) => (
+                        <Star key={index} className="w-5 h-5 fill-current" />
+                      )
+                    )}
+                  </div>
+                )}
+
                 <span className="text-text-light font-bold text-sm">4.6</span>
                 <a
                   className="text-text-muted text-sm underline hover:text-text-light"
                   href="#reviews"
                 >
-                  (125 reviews)
+                  ({product?.reviews} reviews)
                 </a>
               </div>
             </div>
 
-            <p className="text-text-light text-4xl font-bold">$200.00</p>
+            <p className="text-text-light text-4xl font-bold">
+              ${product?.price.toFixed(2)}
+            </p>
 
             <div className="flex flex-col gap-3">
-              <h3 className="text-text-light font-medium">Size:</h3>
+              <h3 className="text-text-light font-medium">Size:{}</h3>
               <div className="flex flex-wrap items-center gap-2">
                 <button className="flex items-center justify-center px-4 py-2 rounded-lg bg-white/10 text-text-muted text-sm font-semibold hover:bg-white/20">
                   S
@@ -145,11 +156,7 @@ const ProductDetailsPage = () => {
                 </button>
                 <div className="pb-3">
                   <p className="text-text-muted text-sm leading-relaxed">
-                    Stay warm and stylish with our Unisex Printed Quilted
-                    Jacket. Crafted with high-quality materials, this jacket
-                    features a unique all-over print, a cozy quilted design, and
-                    a comfortable fit suitable for everyone. Perfect for chilly
-                    days and making a fashion statement.
+                    {product?.description}
                   </p>
                 </div>
               </div>
@@ -334,4 +341,4 @@ const ProductDetailsPage = () => {
   );
 };
 
-export default ProductDetailsPage;
+export default Page;

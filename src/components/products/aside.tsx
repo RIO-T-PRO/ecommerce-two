@@ -28,7 +28,7 @@ const Aside = () => {
   };
 
   const categories = [...new Set(products.map((product) => product.category))];
-  const sizes = [...new Set(products.map((product) => product.size))];
+  const sizes = [...new Set(products.flatMap((product) => product.size))];
 
   const toggleCategory = (category: string) => {
     setSelectedCategory((prev) =>
@@ -38,15 +38,21 @@ const Aside = () => {
     );
   };
 
-  const toggleSizes = (size: string) => {
-    setSelectedSize((prev) =>
-      prev.includes(size) ? prev.filter((s) => s !== size) : [...prev, size]
-    );
+  const toggleSizes = (sizes: string[]) => {
+    setSelectedSize((prev) => {
+      let update = [...prev];
+      sizes.forEach(
+        (size) =>
+          (update = update.includes(size)
+            ? update.filter((s) => s !== size)
+            : [...prev, size])
+      );
+      return update;
+    });
 
     setIsActive(true);
   };
 
-  // Move the filtering logic to useEffect
   useEffect(() => {
     const filtered = products.filter((product) => {
       const matchCategory =
@@ -54,7 +60,8 @@ const Aside = () => {
         selectedCategory.includes(product.category);
 
       const matchSize =
-        selectedSize.length === 0 || selectedSize.includes(product.size);
+        selectedSize.length === 0 ||
+        product.size.some((size) => selectedSize.includes(size));
 
       const matchRange = product.price <= priceRange.currentValue;
 
@@ -140,7 +147,7 @@ const Aside = () => {
             return (
               <button
                 key={size}
-                onClick={() => toggleSizes(size)}
+                onClick={() => toggleSizes(sizes)}
                 className={`px-3 py-1 rounded-lg transition-colors ${
                   active
                     ? "bg-primary text-text-light"
