@@ -7,7 +7,7 @@ export interface ProductsData {
   reviews: number;
   category: string;
   color: string;
-  size: string[];
+  size: string;
   images: string[];
   description: string;
   shipping: {
@@ -37,7 +37,7 @@ export const products: ProductsData[] = [
     reviews: 100,
     category: "Women",
     color: "Blue",
-    size: ["XS", "S", "M", "L", "XL"],
+    size: "M",
     images: [
       "https://lh3.googleusercontent.com/aida-public/AB6AXuBIedGwwA-O7w3LX5ilh-g2cqyOInCPeAGCbOFNR1xMIO2JF2X06f7QcbfS6ssO2xP0w13lAnJ-TVzHjPCMhn-uOsAGMnG8JCPCM7Xbvmuuld0L61VLvqJHt0s_zGhaCpFPgqiTMZ_idgWCvf1DEylnBShscZmLr3JdlQ3Z6nqV4DvGWimAFc8vMSLpG1b5d7QEzWf72puWLsm0qpqPyFYADb55nqkOvor4yLTWvdXUyx5YzPsOx51C4qs9ovHhfFqeVVaZa9gsKh4",
       "https://lh3.googleusercontent.com/aida-public/AB6AXuAVVSstcdx9uVIueoxiHWSLHZ8h2_1DWJ-XB87P6eALd-Xuc1iqx6CAKaXqoKY0InlpcQw75tm0XlQpp1Qeqc9Da4mNqaS6kx0Ji83XZXVL5UMnpOucLvF9HXkHMK40UnabApV9oVXcnwN5ODZ7yJga_pkpSR-084cGB5tBtGwT6bB6SVdKkJSrKHbD549ecxzFGKBsAMg_eAgRbxKsCp2gaFExSn2EP_tnMyktGoQiz46VuyEazoBqTHzbk7Ki_XgTQ-bUKnOJGqU",
@@ -71,7 +71,7 @@ export const products: ProductsData[] = [
     reviews: 198,
     category: "Women",
     color: "Purple",
-    size: ["XS", "S", "M", "L", "XL"],
+    size: "S",
     images: [
       "https://images.unsplash.com/photo-1551532586-40db08ba0167?w=500",
       "https://images.unsplash.com/photo-1542272604-787c62d465d1?w=500",
@@ -105,7 +105,7 @@ export const products: ProductsData[] = [
     reviews: 200,
     category: "Women",
     color: "Red",
-    size: ["XS", "S", "M", "L", "XL"],
+    size: "XS",
     images: [
       "https://images.unsplash.com/photo-1541099810657-40d6b3f06e98?w=500",
       "https://images.unsplash.com/photo-1551532586-40db08ba0167?w=500",
@@ -139,7 +139,7 @@ export const products: ProductsData[] = [
     reviews: 120,
     category: "Women",
     color: "Black",
-    size: ["XS", "S", "M", "L", "XL"],
+    size: "M",
     images: [
       "https://images.unsplash.com/photo-1551028719-00167b16ebc5?w=500",
       "https://images.unsplash.com/photo-1542272604-787c62d465d1?w=500",
@@ -173,7 +173,7 @@ export const products: ProductsData[] = [
     reviews: 289,
     category: "Women",
     color: "Green",
-    size: ["XS", "S", "M", "L", "XL"],
+    size: "L",
     images: [
       "https://images.unsplash.com/photo-1551532586-40db08ba0167?w=500",
       "https://images.unsplash.com/photo-1539533057440-7814baea1002?w=500",
@@ -209,7 +209,7 @@ export const products: ProductsData[] = [
     reviews: 156,
     category: "Men",
     color: "Black",
-    size: ["XS", "S", "M", "L", "XL"],
+    size: "L",
     images: [
       "https://images.unsplash.com/photo-1543163521-9145f931371e?w=500",
       "https://images.unsplash.com/photo-1551028719-00167b16ebc5?w=500",
@@ -243,7 +243,7 @@ export const products: ProductsData[] = [
     reviews: 98,
     category: "Men",
     color: "Blue",
-    size: ["XS", "S", "M", "L", "XL"],
+    size: "M",
     images: [
       "https://images.unsplash.com/photo-1551028719-00167b16ebc5?w=500",
       "https://images.unsplash.com/photo-1543163521-9145f931371e?w=500",
@@ -277,7 +277,7 @@ export const products: ProductsData[] = [
     reviews: 210,
     category: "Men",
     color: "White",
-    size: ["XS", "S", "M", "L", "XL"],
+    size: "L",
     images: [
       "https://images.unsplash.com/photo-1543163521-9145f931371e?w=500",
       "https://images.unsplash.com/photo-1551028719-00167b16ebc5?w=500",
@@ -311,7 +311,7 @@ export const products: ProductsData[] = [
     reviews: 145,
     category: "Men",
     color: "Red",
-    size: ["XS", "S", "M", "L", "XL"],
+    size: "M",
     images: [
       "https://images.unsplash.com/photo-1551028719-00167b16ebc5?w=500",
       "https://images.unsplash.com/photo-1543163521-9145f931371e?w=500",
@@ -345,7 +345,7 @@ export const products: ProductsData[] = [
     reviews: 156,
     category: "Men",
     color: "Green",
-    size: ["XS", "S", "M", "L", "XL"],
+    size: "L",
     images: [
       "https://images.unsplash.com/photo-1539533057440-7814baea1002?w=500",
       "https://images.unsplash.com/photo-1551028719-00167b16ebc5?w=500",
@@ -381,7 +381,7 @@ export const products: ProductsData[] = [
     reviews: 134,
     category: "Kids",
     color: "Purple",
-    size: ["XS", "S", "M", "L", "XL"],
+    size: "M",
     images: [
       "https://images.unsplash.com/photo-1503454537706-cfda28265531?w=500",
       "https://images.unsplash.com/photo-1519457031506-fd23057b741d?w=500",
@@ -415,7 +415,7 @@ export const products: ProductsData[] = [
     reviews: 156,
     category: "Kids",
     color: "Green",
-    size: ["XS", "S", "M", "L", "XL"],
+    size: "S",
     images: [
       "https://images.unsplash.com/photo-1503227192033-470f6a06e9b0?w=500",
       "https://images.unsplash.com/photo-1519457031506-fd23057b741d?w=500",
@@ -449,7 +449,7 @@ export const products: ProductsData[] = [
     reviews: 267,
     category: "Kids",
     color: "Blue",
-    size: ["XS", "S", "M", "L", "XL"],
+    size: "M",
     images: [
       "https://images.unsplash.com/photo-1516563318029-38ce2c064e79?w=500",
       "https://images.unsplash.com/photo-1503454537706-cfda28265531?w=500",
@@ -483,7 +483,7 @@ export const products: ProductsData[] = [
     reviews: 167,
     category: "Kids",
     color: "Red",
-    size: ["XS", "S", "M", "L", "XL"],
+    size: "S",
     images: [
       "https://images.unsplash.com/photo-1503521321318-6c8da08a78e4?w=500",
       "https://images.unsplash.com/photo-1516563318029-38ce2c064e79?w=500",
@@ -517,7 +517,7 @@ export const products: ProductsData[] = [
     reviews: 178,
     category: "Kids",
     color: "White",
-    size: ["XS", "S", "M", "L", "XL"],
+    size: "L",
     images: [
       "https://images.unsplash.com/photo-1503227192033-470f6a06e9b0?w=500",
       "https://images.unsplash.com/photo-1503521321318-6c8da08a78e4?w=500",
@@ -553,7 +553,7 @@ export const products: ProductsData[] = [
     reviews: 89,
     category: "Accessories",
     color: "Black",
-    size: ["XS", "S", "M", "L", "XL"],
+    size: "One",
     images: [
       "https://images.unsplash.com/photo-1572635196237-14b3f281503f?w=500",
       "https://images.unsplash.com/photo-1505631346881-b72b27e84530?w=500",
@@ -587,7 +587,7 @@ export const products: ProductsData[] = [
     reviews: 156,
     category: "Accessories",
     color: "Blue",
-    size: ["XS", "S", "M", "L", "XL"],
+    size: "One",
     images: [
       "https://images.unsplash.com/photo-1529049362936-a3fbf92ab2d3?w=500",
       "https://images.unsplash.com/photo-1552374196-1ab2748d3d4d?w=500",
@@ -621,7 +621,7 @@ export const products: ProductsData[] = [
     reviews: 178,
     category: "Accessories",
     color: "Black",
-    size: ["XS", "S", "M", "L", "XL"],
+    size: "M",
     images: [
       "https://images.unsplash.com/photo-1556821552-5ae0d262e845?w=500",
       "https://images.unsplash.com/photo-1572635196237-14b3f281503f?w=500",
@@ -655,7 +655,7 @@ export const products: ProductsData[] = [
     reviews: 201,
     category: "Accessories",
     color: "Green",
-    size: ["XS", "S", "M", "L", "XL"],
+    size: "One",
     images: [
       "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=500",
       "https://images.unsplash.com/photo-1491553895911-0055eca6402d?w=500",
@@ -689,7 +689,7 @@ export const products: ProductsData[] = [
     reviews: 312,
     category: "Accessories",
     color: "Red",
-    size: ["XS", "S", "M", "L", "XL"],
+    size: "One",
     images: [
       "https://images.unsplash.com/photo-1523293182086-7651a899d37f?w=500",
       "https://images.unsplash.com/photo-1579365080519-e21cc028cb29?w=500",
@@ -725,7 +725,7 @@ export const products: ProductsData[] = [
     reviews: 345,
     category: "Shoes",
     color: "White",
-    size: ["XS", "S", "M", "L", "XL"],
+    size: "42",
     images: [
       "https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=500",
       "https://images.unsplash.com/photo-1460353581641-37baddab0fa2?w=500",
@@ -759,7 +759,7 @@ export const products: ProductsData[] = [
     reviews: 412,
     category: "Shoes",
     color: "Black",
-    size: ["XS", "S", "M", "L", "XL"],
+    size: "43",
     images: [
       "https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=500",
       "https://images.unsplash.com/photo-1460353581641-37baddab0fa2?w=500",
@@ -793,7 +793,7 @@ export const products: ProductsData[] = [
     reviews: 267,
     category: "Shoes",
     color: "Brown",
-    size: ["XS", "S", "M", "L", "XL"],
+    size: "44",
     images: [
       "https://images.unsplash.com/photo-1460353581641-37baddab0fa2?w=500",
       "https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=500",
@@ -827,7 +827,7 @@ export const products: ProductsData[] = [
     reviews: 289,
     category: "Shoes",
     color: "Red",
-    size: ["XS", "S", "M", "L", "XL"],
+    size: "43",
     images: [
       "https://images.unsplash.com/photo-1523869635100-9f4c4e86b553?w=500",
       "https://images.unsplash.com/photo-1460353581641-37baddab0fa2?w=500",
@@ -861,7 +861,7 @@ export const products: ProductsData[] = [
     reviews: 334,
     category: "Shoes",
     color: "Blue",
-    size: ["XS", "S", "M", "L", "XL"],
+    size: "44",
     images: [
       "https://images.unsplash.com/photo-1460353581641-37baddab0fa2?w=500",
       "https://images.unsplash.com/photo-1523869635100-9f4c4e86b553?w=500",
