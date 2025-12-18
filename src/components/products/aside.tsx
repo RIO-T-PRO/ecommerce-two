@@ -2,6 +2,7 @@
 
 import { useProduct } from "@/context/app-context";
 import { products } from "@/data/products";
+import { CartItem } from "@/data/cart";
 import { Search, Star } from "lucide-react";
 import { ChangeEvent, useEffect, useState } from "react";
 
@@ -38,18 +39,10 @@ const Aside = () => {
     );
   };
 
-  const toggleSizes = (sizes: string[]) => {
-    setSelectedSize((prev) => {
-      let update = [...prev];
-      sizes.forEach(
-        (size) =>
-          (update = update.includes(size)
-            ? update.filter((s) => s !== size)
-            : [...prev, size])
-      );
-      return update;
-    });
-
+  const toggleSize = (size: string) => {
+    setSelectedSize((prev) =>
+      prev.includes(size) ? prev.filter((s) => s !== size) : [...prev, size]
+    );
     setIsActive(true);
   };
 
@@ -60,8 +53,7 @@ const Aside = () => {
         selectedCategory.includes(product.category);
 
       const matchSize =
-        selectedSize.length === 0 ||
-        product.size.some((size) => selectedSize.includes(size));
+        selectedSize.length === 0 || selectedSize.includes(product.size);
 
       const matchRange = product.price <= priceRange.currentValue;
 
@@ -147,7 +139,7 @@ const Aside = () => {
             return (
               <button
                 key={size}
-                onClick={() => toggleSizes(sizes)}
+                onClick={() => toggleSize(size)}
                 className={`px-3 py-1 rounded-lg transition-colors ${
                   active
                     ? "bg-primary text-text-light"

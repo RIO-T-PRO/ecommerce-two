@@ -1,11 +1,11 @@
 "use client";
 
-import { products, ProductsData } from "@/data/products";
+import { CartItem } from "@/data/cart";
 import { useContext, useState, createContext } from "react";
 
 type IContext = {
-  productData: ProductsData[];
-  setProductData: React.Dispatch<React.SetStateAction<ProductsData[]>>;
+  productData: CartItem[];
+  setProductData: React.Dispatch<React.SetStateAction<CartItem[]>>;
 };
 
 type Props = {
@@ -13,7 +13,7 @@ type Props = {
 };
 
 const defaultProductContext: IContext = {
-  productData: products,
+  productData: [],
   setProductData: () => {
     console.warn("ProductProvider not found");
   },
@@ -22,7 +22,7 @@ const defaultProductContext: IContext = {
 const productContext = createContext<IContext>(defaultProductContext);
 
 const ProductProvider = ({ children }: Props) => {
-  const [productData, setProductData] = useState<ProductsData[]>(products);
+  const [productData, setProductData] = useState<CartItem[]>([]);
 
   const value: IContext = {
     productData,
