@@ -3,6 +3,7 @@
 import { useProduct } from "@/context/app-context";
 import { products } from "@/data/products";
 import useCart from "@/hooks/use-cart";
+import useFavorite from "@/hooks/use-favorite";
 
 import {
   Star,
@@ -13,6 +14,7 @@ import {
   Plus,
   Minus,
   ShoppingBag,
+  Delete,
 } from "lucide-react";
 import Link from "next/link";
 import { useParams } from "next/navigation";
@@ -21,13 +23,15 @@ import { useState } from "react";
 const Page = () => {
   const params = useParams();
   const { id } = params;
-  const { cart } = useProduct();
+  const { cart, favorite } = useProduct();
+  const { handleFavorite } = useFavorite();
 
   const product = products.find((item) => item.id === id);
 
   const [selectedImage, setselectedImage] = useState(product?.images[0]);
 
-  const { handleAddToCart, decreaseQuantity, increaseQuantity } = useCart();
+  const { handleAddToCart, decreaseQuantity, increaseQuantity, deleteItem } =
+    useCart();
 
   if (!product) {
     return (
@@ -36,7 +40,11 @@ const Page = () => {
       </div>
     );
   }
-  const quantity = cart.find((item) => item.id === product.id)?.cartQuantity;
+
+  const cartItem = cart.find((item) => item.id === product.id);
+  const favoriteItem = favorite.find((item) => item.id === product.id);
+
+  const quantity = cartItem?.cartQuantity;
 
   return (
     <div className="min-h-screen bg-background-dark">
@@ -134,24 +142,33 @@ const Page = () => {
             </div>
 
             <div className="flex items-center gap-4">
-              <div className="flex items-center rounded-lg bg-white/10">
-                <button
-                  disabled={quantity === 1}
-                  onClick={() => decreaseQuantity(product.id)}
-                  className="px-3 py-3 text-text-muted hover:text-text-light cursor-pointer"
-                >
-                  <Minus className="w-4 h-4" />
-                </button>
-                <span className="px-3 text-text-light font-bold">
-                  {quantity}
-                </span>
-                <button
-                  onClick={() => increaseQuantity(product.id)}
-                  className="px-3 py-3 text-text-muted hover:text-text-light cursor-pointer"
-                >
-                  <Plus className="w-4 h-4" />
-                </button>
-              </div>
+              {cartItem && (
+                <div className="flex items-center rounded-lg bg-white/10">
+                  <button
+                    disabled={quantity === 1}
+                    onClick={() => decreaseQuantity(product.id)}
+                    className="px-3 py-3 text-text-muted hover:text-text-light cursor-pointer"
+                  >
+                    <Minus className="w-4 h-4" />
+                  </button>
+                  <span className="px-3 text-text-light font-bold">
+                    {quantity}
+                  </span>
+                  <button
+                    onClick={() => increaseQuantity(product.id)}
+                    className="px-3 py-3 text-text-muted hover:text-text-light cursor-pointer`"
+                  >
+                    <Plus className="w-4 h-4" />
+                  </button>
+
+                  <button
+                    onClick={() => deleteItem(product.id)}
+                    className="px-3 py-3 text-text-muted hover:text-text-light cursor-pointer`"
+                  >
+                    <Delete className="w-4 h-4" />
+                  </button>
+                </div>
+              )}
               <button
                 onClick={() => handleAddToCart(product)}
                 className="flex w-full min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 px-6 bg-text-blue text-text-light text-base font-bold leading-normal tracking-[0.015em] hover:bg-text-blue/90"
@@ -159,8 +176,13 @@ const Page = () => {
                 <ShoppingBag className="w-5 h-5 mr-2" />
                 <span className="truncate">Add to Cart</span>
               </button>
-              <button className="flex max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 bg-white/5 text-text-muted hover:text-text-light hover:bg-white/10 gap-2 text-sm font-bold leading-normal tracking-[0.015em] min-w-0 px-3.5">
-                <Heart className="w-5 h-5" />
+              <button
+                onClick={() => handleFavorite(product)}
+                className="flex max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 bg-white/5 text-text-muted hover:text-text-light hover:bg-white/10 gap-2 text-sm font-bold leading-normal tracking-[0.015em] min-w-0 px-3.5"
+              >
+                <Heart
+                  className={`w-5 h-5 ${favoriteItem ? "fill-text-blue" : ""}`}
+                />
               </button>
             </div>
 

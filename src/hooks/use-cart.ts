@@ -36,8 +36,7 @@ const useCart = () => {
   };
 
   const deleteItem = (id: string) => {
-    const newCart = cart.filter((product) => product.id !== id);
-    return newCart;
+    setCart((prev) => prev.filter((item) => item.id !== id));
   };
 
   return {
