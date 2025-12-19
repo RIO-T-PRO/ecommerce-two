@@ -1,6 +1,9 @@
 "use client";
 
+import { useProduct } from "@/context/app-context";
 import { products } from "@/data/products";
+import useCart from "@/hooks/use-cart";
+
 import {
   Star,
   StarHalf,
@@ -18,10 +21,22 @@ import { useState } from "react";
 const Page = () => {
   const params = useParams();
   const { id } = params;
+  const { cart } = useProduct();
 
   const product = products.find((item) => item.id === id);
 
   const [selectedImage, setselectedImage] = useState(product?.images[0]);
+
+  const { handleAddToCart, decreaseQuantity, increaseQuantity } = useCart();
+
+  if (!product) {
+    return (
+      <div className="text-3xl text-center text-text-muted">
+        Product not found
+      </div>
+    );
+  }
+  const quantity = cart.find((item) => item.id === product.id)?.cartQuantity;
 
   return (
     <div className="min-h-screen bg-background-dark">
@@ -111,33 +126,36 @@ const Page = () => {
 
             <div className="flex flex-col gap-3">
               <h3 className="text-text-light font-medium">Size:{}</h3>
-              <div className="flex flex-wrap items-center gap-2">
+              <div>
                 <button className="flex items-center justify-center px-4 py-2 rounded-lg bg-white/10 text-text-muted text-sm font-semibold hover:bg-white/20">
-                  S
-                </button>
-                <button className="flex items-center justify-center px-4 py-2 rounded-lg bg-text-blue text-text-light text-sm font-semibold">
-                  M
-                </button>
-                <button className="flex items-center justify-center px-4 py-2 rounded-lg bg-white/10 text-text-muted text-sm font-semibold hover:bg-white/20">
-                  L
-                </button>
-                <button className="flex items-center justify-center px-4 py-2 rounded-lg bg-white/10 text-text-muted text-sm font-semibold hover:bg-white/20">
-                  XL
+                  {product.size}
                 </button>
               </div>
             </div>
 
             <div className="flex items-center gap-4">
               <div className="flex items-center rounded-lg bg-white/10">
-                <button className="px-3 py-3 text-text-muted hover:text-text-light">
+                <button
+                  disabled={quantity === 1}
+                  onClick={() => decreaseQuantity(product.id)}
+                  className="px-3 py-3 text-text-muted hover:text-text-light cursor-pointer"
+                >
                   <Minus className="w-4 h-4" />
                 </button>
-                <span className="px-3 text-text-light font-bold">1</span>
-                <button className="px-3 py-3 text-text-muted hover:text-text-light">
+                <span className="px-3 text-text-light font-bold">
+                  {quantity}
+                </span>
+                <button
+                  onClick={() => increaseQuantity(product.id)}
+                  className="px-3 py-3 text-text-muted hover:text-text-light cursor-pointer"
+                >
                   <Plus className="w-4 h-4" />
                 </button>
               </div>
-              <button className="flex w-full min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 px-6 bg-text-blue text-text-light text-base font-bold leading-normal tracking-[0.015em] hover:bg-text-blue/90">
+              <button
+                onClick={() => handleAddToCart(product)}
+                className="flex w-full min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 px-6 bg-text-blue text-text-light text-base font-bold leading-normal tracking-[0.015em] hover:bg-text-blue/90"
+              >
                 <ShoppingBag className="w-5 h-5 mr-2" />
                 <span className="truncate">Add to Cart</span>
               </button>
