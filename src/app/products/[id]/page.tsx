@@ -114,11 +114,16 @@ const Page = () => {
               <div className="flex items-center gap-2 mt-3">
                 {product?.rating && (
                   <div className="flex text-yellow-400">
-                    {Array.from({ length: Math.floor(product.rating) }).map(
-                      (_, index) => (
-                        <Star key={index} className="w-5 h-5 fill-current" />
-                      )
-                    )}
+                    {Array.from({ length: 5 }).map((_, index) => (
+                      <Star
+                        key={`star-${product.id}-${index}`}
+                        className={`w-4 h-4 ${
+                          index < Math.floor(product.rating)
+                            ? "fill-yellow-400 text-yellow-400"
+                            : "fill-gray-300 text-gray-300"
+                        }`}
+                      />
+                    ))}
                   </div>
                 )}
 

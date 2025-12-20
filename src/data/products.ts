@@ -30,7 +30,7 @@ export const products: ProductsData[] = [
   // WOMEN - 5 products
   {
     id: "1",
-    name: "Color-blocked Puffer Jacket",
+    name: "Puffer Jacket",
     price: 300,
     discount: 15,
     rating: 4.2,

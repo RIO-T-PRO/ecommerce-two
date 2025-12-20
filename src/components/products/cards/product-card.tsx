@@ -38,8 +38,16 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
             <p className="text-text-muted text-sm">{product.category}</p>
 
             <div className="flex items-center space-x-1">
-              <Star className="w-4 h-4 fill-yellow-400 text-yellow-400" />
-              <span className="text-sm text-text-light">{product.rating}</span>
+              {Array.from({ length: 5 }).map((_, index) => (
+                <Star
+                  key={`star-${product.id}-${index}`}
+                  className={`w-4 h-4 ${
+                    index < Math.floor(product.rating)
+                      ? "fill-yellow-400 text-yellow-400"
+                      : "fill-gray-300 text-gray-300"
+                  }`}
+                />
+              ))}
             </div>
           </span>
 
