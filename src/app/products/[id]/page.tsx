@@ -1,5 +1,6 @@
 "use client";
 
+import ProductCard from "@/components/products/cards/product-card";
 import { useProduct } from "@/context/app-context";
 import { products } from "@/data/products";
 import useCart from "@/hooks/use-cart";
@@ -27,6 +28,9 @@ const Page = () => {
   const { handleFavorite } = useFavorite();
 
   const product = products.find((item) => item.id === id);
+  const relatedProductFilter = products.filter(
+    (item) => item.category === product?.category && item.id !== id
+  );
 
   const [selectedImage, setselectedImage] = useState(product?.images[0]);
 
@@ -42,7 +46,7 @@ const Page = () => {
   }
 
   const cartItem = cart.find((item) => item.id === product.id);
-  const favoriteItem = favorite.find((item) => item.id === product.id);
+  const isFavorite = favorite.find((item) => item.id === product.id);
 
   const quantity = cartItem?.cartQuantity;
 
@@ -181,7 +185,7 @@ const Page = () => {
                 className="flex max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 bg-white/5 text-text-muted hover:text-text-light hover:bg-white/10 gap-2 text-sm font-bold leading-normal tracking-[0.015em] min-w-0 px-3.5"
               >
                 <Heart
-                  className={`w-5 h-5 ${favoriteItem ? "fill-text-blue" : ""}`}
+                  className={`w-5 h-5 ${isFavorite ? "fill-text-blue" : ""}`}
                 />
               </button>
             </div>
@@ -230,11 +234,9 @@ const Page = () => {
                 4.6
               </p>
               <div className="flex gap-0.5 text-yellow-400">
-                <Star className="w-5 h-5 fill-current" />
-                <Star className="w-5 h-5 fill-current" />
-                <Star className="w-5 h-5 fill-current" />
-                <Star className="w-5 h-5 fill-current" />
-                <StarHalf className="w-5 h-5 fill-current" />
+                {[1, 2, 3, 4, 5].map((item) => (
+                  <Star className="w-5 h-5 fill-current" />
+                ))}
               </div>
               <p className="text-text-muted text-base font-normal leading-normal">
                 Based on 125 reviews
@@ -295,85 +297,9 @@ const Page = () => {
             Related Products
           </h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-            <div className="flex flex-col gap-4">
-              <div className="relative overflow-hidden rounded-xl">
-                <img
-                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuC7GxIPy7OyX0v4OIdsjT2WvOB_TvJyNgm8UB8iV9B58VSjmytEDdAEW-q7SEnu2tqW1FQNuS5KfVn-yamqDymVVBrB-JUKsB1Pm3JLFa8sFK90fBd7IhQksc1bf7le-7C_q4MrzaAUkZuAaNc2U8lbEibjk9_4I-Qh2g3MwdH4ci0nDywg1rmWJGfvQCNvM1rIvYZ6-ak_eOdMR7eoLREiS_7tKBbuimlVrDHRbS-gmeNhOLrB6M_ac9KtdqaQxoiOxtJJIaqJs2w"
-                  alt="Image of a stylish black bomber jacket"
-                  className="w-full aspect-3/4 object-cover"
-                />
-                <button className="absolute top-3 right-3 flex items-center justify-center size-8 rounded-full bg-black/30 backdrop-blur-sm text-text-muted hover:text-text-light hover:bg-black/50">
-                  <Heart className="w-5 h-5" />
-                </button>
-              </div>
-              <div className="flex flex-col gap-1">
-                <h3 className="text-text-light font-semibold">
-                  Classic Bomber Jacket
-                </h3>
-                <p className="text-text-muted text-sm">Men's Outerwear</p>
-                <p className="text-text-light font-bold mt-1">$150.00</p>
-              </div>
-            </div>
-
-            <div className="flex flex-col gap-4">
-              <div className="relative overflow-hidden rounded-xl">
-                <img
-                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuC6sdLvT86rygY54NLZ4mU5JHUpmcGNnExaRNMN9ytFj160I7ptIlQct3ItBo4AsgmKt1K9xELlbX_Ui98q2-RV_n5mmEh4ums9OAKTB09Xko2qOiK3uKYTmbsXJQqAg2JVeRKdL7G6_GI7vuI59BE6BfWjd9SQDUirfvbAuQJ9r8IuhjH5Jge_rlCMR4uIzTqQOekxNP3Cd2A8mKS3gjZ6ulxEBMO89FQ7GuGj8h3Gg3Z5ifIyflZMHq9JHdyqnClNl8qY5z_Wr5Q"
-                  alt="Image of a cozy beige trench coat"
-                  className="w-full aspect-3/4 object-cover"
-                />
-                <button className="absolute top-3 right-3 flex items-center justify-center size-8 rounded-full bg-black/30 backdrop-blur-sm text-text-muted hover:text-text-light hover:bg-black/50">
-                  <Heart className="w-5 h-5" />
-                </button>
-              </div>
-              <div className="flex flex-col gap-1">
-                <h3 className="text-text-light font-semibold">
-                  Elegant Trench Coat
-                </h3>
-                <p className="text-text-muted text-sm">Women's Collection</p>
-                <p className="text-text-light font-bold mt-1">$250.00</p>
-              </div>
-            </div>
-
-            <div className="flex flex-col gap-4">
-              <div className="relative overflow-hidden rounded-xl">
-                <img
-                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuDB5SajXBh7u9Sondk9ow05Mq_ObiynYSb9k2oUiU0bk1PT6ji9--lJ4Y9EseeedyKdWZ3vxTYYHyOzDPzrvgIWtwMLl6y7oTKpBiQP2dxpYezm2DiyO3MeEUw9iOVRenbRs8PzPHFpfjqfqMCUzeuwBzpqQUf6Px1kNhk-sY9SBckyDzVdctEM85eVtfjUGvpk8kS6XAdS80zjkPA7JYCRHvg_VDgXolL4mq5saXeuwnZgwY26R4xK-gMxmPa5WwoFEcT_kStcfM0"
-                  alt="Image of a rugged denim jacket"
-                  className="w-full aspect-3/4 object-cover"
-                />
-                <button className="absolute top-3 right-3 flex items-center justify-center size-8 rounded-full bg-black/30 backdrop-blur-sm text-text-muted hover:text-text-light hover:bg-black/50">
-                  <Heart className="w-5 h-5 fill-current" />
-                </button>
-              </div>
-              <div className="flex flex-col gap-1">
-                <h3 className="text-text-light font-semibold">
-                  Vintage Denim Jacket
-                </h3>
-                <p className="text-text-muted text-sm">Unisex Apparel</p>
-                <p className="text-text-light font-bold mt-1">$120.00</p>
-              </div>
-            </div>
-
-            <div className="flex flex-col gap-4">
-              <div className="relative overflow-hidden rounded-xl">
-                <img
-                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuCfbzLLcMSI_PjuXx5ZMhw5dyBWyePpsgQVs6kM84fVDxN2olYm5x1QdO7Q7tp1MI-Pm0w3UoZTq9vk522XCXzTAoRB2Z3GoRhLZgPw1cXlhQSmOJhCoLIgJUVInBx_XOgA8e8SDtcH7b2Sg1vg7cyC4CpLQGi0jlN6mMUjdGJ9VoAUUtzhIwzZeQjQnAqc331FDgCpYP9jlOOlrxVJt5rbXqVJBukVzLFT9AXyeaLZyJgKzS0T6RJfaPA_PDgbrM0ZNzG_Bjj3Lrg"
-                  alt="Image of a leather biker jacket"
-                  className="w-full aspect-3/4 object-cover"
-                />
-                <button className="absolute top-3 right-3 flex items-center justify-center size-8 rounded-full bg-black/30 backdrop-blur-sm text-text-muted hover:text-text-light hover:bg-black/50">
-                  <Heart className="w-5 h-5" />
-                </button>
-              </div>
-              <div className="flex flex-col gap-1">
-                <h3 className="text-text-light font-semibold">
-                  Leather Biker Jacket
-                </h3>
-                <p className="text-text-muted text-sm">Men's Outerwear</p>
-                <p className="text-text-light font-bold mt-1">$300.00</p>
-              </div>
-            </div>
+            {relatedProductFilter.map((item) => (
+              <ProductCard key={item.id} product={item} />
+            ))}
           </div>
         </div>
       </main>
