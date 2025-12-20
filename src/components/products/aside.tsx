@@ -125,9 +125,9 @@ const Aside = () => {
           <button
             onClick={() => setSelectedSize([])}
             className={`px-3 py-1 rounded-lg transition-colors ${
-              selectedSize.length === 0
-                ? "bg-primary text-text-light"
-                : "bg-section-bg text-text-light hover:bg-primary"
+              isActive
+                ? "bg-text-blue text-text-light"
+                : "bg-section-bg text-text-light hover:bg-text-blue"
             }`}
           >
             All
@@ -142,8 +142,8 @@ const Aside = () => {
                 onClick={() => toggleSize(size)}
                 className={`px-3 py-1 rounded-lg transition-colors ${
                   active
-                    ? "bg-primary text-text-light"
-                    : "bg-section-bg text-text-light hover:bg-primary"
+                    ? "bg-text-blue text-text-light"
+                    : "bg-section-bg text-text-light hover:bg-text-blue"
                 }`}
               >
                 {size}
