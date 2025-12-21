@@ -81,12 +81,12 @@ const Footer = () => {
           </p>
           <form className="flex">
             <input
-              className="w-full rounded-l-lg outline-none border border-gray-600 bg-background-dark text-text-light pl-4 py-2"
+              className="w-full rounded-l-lg outline-none border border-border-light bg-background-dark text-text-light pl-4 py-2"
               placeholder="Your email"
               type="email"
             />
             <button
-              className="bg-text-blue text-text-light px-4 rounded-r-lg transition-colors"
+              className="bg-text-primary text-text-light px-4 rounded-r-lg hover:bg-text-primary/80 transition-colors"
               type="submit"
             >
               Subscribe

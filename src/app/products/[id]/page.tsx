@@ -52,8 +52,8 @@ const Page = () => {
 
   return (
     <div className="min-h-screen bg-background-dark">
-      <main className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
-        <div className="mb-6">
+      <main className="w-full max-w-7xl px-11 py-6">
+        <div className="mb-4">
           <div className="flex flex-wrap gap-2">
             <Link
               className="text-text-muted text-sm font-medium leading-normal hover:text-text-light"
@@ -80,8 +80,8 @@ const Page = () => {
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-6">
-          <div className="flex flex-col col-span-2 gap-6">
-            <div className="h-100 w-full border-2 border-text-blue rounded-xl">
+          <div className="flex flex-col col-span-2 gap-5">
+            <div className="h-90 w-full border-2 border-text-blue rounded-xl">
               <img
                 src={selectedImage}
                 alt={product?.name}
@@ -209,22 +209,6 @@ const Page = () => {
                   </p>
                 </div>
               </div>
-              <div className="border-t border-border-light">
-                <button className="flex justify-between items-center w-full py-3 text-left">
-                  <h3 className="text-text-light font-medium">
-                    Shipping & Returns
-                  </h3>
-                  <ChevronDown className="w-5 h-5 text-text-muted" />
-                </button>
-              </div>
-              <div className="border-t border-border-light">
-                <button className="flex justify-between items-center w-full py-3 text-left">
-                  <h3 className="text-text-light font-medium">
-                    Store Information
-                  </h3>
-                  <ChevronDown className="w-5 h-5 text-text-muted" />
-                </button>
-              </div>
             </div>
           </div>
         </div>
@@ -240,7 +224,7 @@ const Page = () => {
               </p>
               <div className="flex gap-0.5 text-yellow-400">
                 {[1, 2, 3, 4, 5].map((item) => (
-                  <Star className="w-5 h-5 fill-current" />
+                  <Star key={item} className="w-5 h-5 fill-current" />
                 ))}
               </div>
               <p className="text-text-muted text-base font-normal leading-normal">
