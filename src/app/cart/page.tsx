@@ -1,14 +1,18 @@
+"use client";
+
 import CartCard from "@/components/products/cards/cart-card";
 import CartAside from "@/components/products/cart-aside";
+import { useProduct } from "@/context/app-context";
 import { ArrowBigLeft } from "lucide-react";
 import Link from "next/link";
-import React from "react";
 
 const CartPage = () => {
+  const { cart } = useProduct();
+  const isInCart = cart.length;
+
   return (
     <div className="min-h-screen bg-background-dark py-6 px-11">
       <main className="w-full max-w-7xl">
-        {/* Breadcrumbs */}
         <div className="flex flex-wrap gap-2 mb-3">
           <a
             className="text-text-muted text-sm font-medium leading-normal transition-colors"
@@ -24,7 +28,7 @@ const CartPage = () => {
           </span>
         </div>
 
-        <div className="mb-4">
+        <div className="mb-3">
           <h1 className="text-text-light text-2xl font-semibold leading-tight tracking-[-0.033em] min-w-72">
             Your Cart
           </h1>
@@ -32,15 +36,29 @@ const CartPage = () => {
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 lg:gap-8 items-start">
           <div className="lg:col-span-2 flex flex-col gap-2 rounded-xl bg-card-bg p-4">
-            <div className="flex justify-between items-center border-b border-border-light pb-3">
-              <h2 className="text-text-light text-lg font-bold">2 Items</h2>
-              <button className="text-text-muted hover:text-primary text-sm font-medium transition-colors">
-                Clear Cart
-              </button>
-            </div>
+            {isInCart === 0 ? (
+              <div className="flex justify-between items-center border-b border-border-light pb-3">
+                <h2 className="text-text-light text-lg font-bold">
+                  Your cart is empty
+                </h2>
+                <button className="text-text-muted hover:text-primary text-sm font-medium transition-colors">
+                  Looks like you haven't added any products to your cart yet.
+                </button>
+              </div>
+            ) : (
+              <div className="flex justify-between items-center border-b border-border-light pb-3">
+                <h2 className="text-text-light text-lg font-bold">
+                  {cart.length} Items
+                </h2>
+                <button className="text-text-muted hover:text-primary text-sm font-medium transition-colors">
+                  Clear Cart
+                </button>
+              </div>
+            )}
 
-            <CartCard />
-            <CartCard />
+            {cart.map((item) => (
+              <CartCard key={item.id} cartItem={item} />
+            ))}
             <div className="mt-2">
               <Link
                 className="inline-flex items-center gap-2 text-text-blue hover:underline text-sm font-medium"

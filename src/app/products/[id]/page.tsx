@@ -8,8 +8,6 @@ import useFavorite from "@/hooks/use-favorite";
 
 import {
   Star,
-  StarHalf,
-  ChevronDown,
   ChevronUp,
   Heart,
   Plus,
