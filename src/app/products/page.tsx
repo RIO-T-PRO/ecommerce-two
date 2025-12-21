@@ -11,11 +11,11 @@ const Products = () => {
 
   return (
     <div>
-      <div className="px-6 lg:px-10 py-12 bg-background-dark">
-        <div className="flex">
-          <main className="flex-1 p-8">
-            <div className="mb-12">
-              <div className="flex items-center justify-between mb-6">
+      <div className="px-3 pb-6 bg-background-dark">
+        <div className="flex bg-yellow">
+          <main className="flex-1 px-8 py-4">
+            <div className="mb-4">
+              <div className="flex items-center justify-between mb-2">
                 <h2 className="text-xl font-bold text-text-light">Store</h2>
                 <button className="text-text-blue text-sm hover:text-opacity-80">
                   View All →
@@ -25,15 +25,15 @@ const Products = () => {
                 {storesData.map((store, index) => (
                   <div
                     key={index}
-                    className="bg-card-bg border border-border-light rounded-lg p-4"
+                    className="bg-card-bg border border-border-light rounded-lg p-2"
                   >
-                    <div className="w-16 h-16 bg-soft-blue-bg rounded-lg mb-4">
+                    <div className="w-16 h-16 bg-soft-blue-bg rounded-lg mb-2">
                       <img src={store.image} alt={store.name} />
                     </div>
-                    <p className="text-text-light font-semibold text-sm mb-2">
+                    <p className="text-text-light font-semibold text-sm mb-1">
                       {store.name}
                     </p>
-                    <div className="flex items-center gap-1 mb-2">
+                    <div className="flex items-center gap-1 mb-1">
                       {[...Array(store.rating)].map((_, i) => (
                         <Star
                           key={i}
@@ -51,8 +51,8 @@ const Products = () => {
             </div>
 
             <div>
-              <div className="flex items-center justify-between mb-6">
-                <h2 className="text-xl font-bold text-text-light">Result</h2>
+              <div className="flex items-center justify-between mb-4">
+                <h2 className="text-xl font-bold text-text-light">Products</h2>
                 <button className="text-text-blue text-sm hover:text-opacity-80">
                   View All →
                 </button>

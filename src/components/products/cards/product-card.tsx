@@ -17,11 +17,11 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
   const isFavorite = favorite.find((item) => item.id === product.id);
 
   return (
-    <div className="flex flex-col gap-4">
+    <div className="flex flex-col gap-3">
       <div className="relative overflow-hidden rounded-xl">
         <img
           src={product.images[0]}
-          className="w-full aspect-3/4 object-cover"
+          className="w-full aspect-2/2 object-cover"
         />
         <button
           onClick={() => handleFavorite(product)}
