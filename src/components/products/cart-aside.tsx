@@ -1,5 +1,7 @@
+"use client";
+
 import { useProduct } from "@/context/app-context";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 
 const CartAside = () => {
   const { cart } = useProduct();
@@ -74,6 +76,7 @@ const CartAside = () => {
           </button>
         </div>
         <button
+          disabled={cart.length === 0}
           onClick={() => router.push("/checkout")}
           className="flex w-full cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 bg-text-primary text-text-light gap-2 text-base font-bold leading-normal  hover:bg-text-primary/80 transition-colors"
         >
