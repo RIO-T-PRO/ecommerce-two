@@ -8,14 +8,14 @@ import {
   Smile,
   Package,
 } from "lucide-react";
+import Link from "next/link";
 
 const AboutPage = () => {
   return (
     <div className="min-h-screen bg-background-dark">
       <main className="grow">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8">
+        <div className="max-w-7xl px-4 sm:px-6 lg:px-11 py-8">
           <div>
-            {/* Improved Hero Section with Background Image */}
             <div className="relative overflow-hidden rounded-2xl min-h-[400px] shadow-2xl">
               <div className="absolute inset-0">
                 <img
@@ -28,7 +28,7 @@ const AboutPage = () => {
               </div>
 
               <div className="relative h-full flex items-center">
-                <div className="p-8 lg:p-12 max-w-2xl">
+                <div className="p-6 max-w-2xl">
                   <h1 className="text-text-light text-5xl lg:text-6xl font-black leading-tight tracking-tight mb-4">
                     About Us
                   </h1>
@@ -42,7 +42,7 @@ const AboutPage = () => {
 
             <div className="mt-12 lg:mt-16">
               <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
-                <div>
+                <div className="p-6">
                   <h2 className="text-text-light text-3xl font-bold leading-tight tracking-tight">
                     Our Mission
                   </h2>
@@ -54,7 +54,7 @@ const AboutPage = () => {
                     function.
                   </p>
                 </div>
-                <div className="bg-white/5 rounded-2xl p-8 border border-border-light">
+                <div className="bg-white/5 rounded-2xl p-6 border border-border-light">
                   <h3 className="text-text-light text-xl font-semibold mb-4">
                     Core Values
                   </h3>
@@ -80,7 +80,7 @@ const AboutPage = () => {
               </div>
             </div>
 
-            <div className="mt-12 lg:mt-16 bg-section-bg rounded-2xl p-8 lg:p-12">
+            <div className="mt-12 lg:mt-16 bg-section-bg rounded-2xl p-6">
               <h2 className="text-text-light text-3xl font-bold leading-tight tracking-tight">
                 Our Story
               </h2>
@@ -124,7 +124,7 @@ const AboutPage = () => {
                     Countries Shipped To
                   </p>
                 </div>
-                <div className="bg-card-bg rounded-2xl p-8 flex flex-col items-center justify-center text-center shadow-lg hover:shadow-xl transition-shadow duration-300 border border-border-light">
+                <div className="bg-card-bg rounded-2xl p-6 flex flex-col items-center justify-center text-center shadow-lg hover:shadow-xl transition-shadow duration-300 border border-border-light">
                   <div className="mb-4 p-4 rounded-full bg-soft-blue-bg/20">
                     <Smile className="text-text-blue text-5xl" />
                   </div>
@@ -133,7 +133,7 @@ const AboutPage = () => {
                   </p>
                   <p className="text-text-muted text-lg">Happy Customers</p>
                 </div>
-                <div className="bg-card-bg rounded-2xl p-8 flex flex-col items-center justify-center text-center shadow-lg hover:shadow-xl transition-shadow duration-300 border border-border-light">
+                <div className="bg-card-bg rounded-2xl p-6 flex flex-col items-center justify-center text-center shadow-lg hover:shadow-xl transition-shadow duration-300 border border-border-light">
                   <div className="mb-4 p-4 rounded-full bg-soft-blue-bg/20">
                     <Package className="text-text-blue text-5xl" />
                   </div>
@@ -146,9 +146,11 @@ const AboutPage = () => {
             </div>
 
             <div className="mt-12 lg:mt-16 flex justify-center">
-              <button className="flex items-center justify-center rounded-xl h-14 bg-text-blue text-text-light gap-3 text-base font-bold tracking-wide px-8 hover:bg-text-blue/90 transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl">
-                Shop Our Collection
-              </button>
+              <Link href="/products">
+                <button className="flex items-center justify-center rounded-xl h-14 bg-text-blue text-text-light gap-3 text-base font-bold tracking-wide px-8 hover:bg-text-blue/90">
+                  Go to our products
+                </button>
+              </Link>
             </div>
           </div>
         </div>

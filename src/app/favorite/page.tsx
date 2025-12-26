@@ -28,7 +28,12 @@ const FavoritesPage = () => {
 
   return (
     <section className="px-4 md:px-8 py-8 bg-background-dark">
-      <h1 className="text-2xl font-bold text-text-light mb-6">My Favorites</h1>
+      <div className="mb-6 flex items-center space-x-1">
+        <Link href="/products" className="text-text-muted font-semibold">
+          products /
+        </Link>
+        <h1 className="text-xl font-semibold text-text-light ">favorites</h1>
+      </div>
 
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
         {favorite.map((product) => (
