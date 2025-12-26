@@ -48,12 +48,14 @@ const Header = () => {
         <button className="flex items-center justify-center rounded-lg px-4 h-10 bg-text-blue whitespace-nowrap text-text-light cursor-pointer hover:bg-text-primary/80 transition-colors">
           Sign up
         </button>
-        <button className="relative flex items-center justify-center rounded-lg px-3 h-10 bg-transparent text-gray-600 dark:text-gray-300 hover:bg-gray-500/10 border border-gray-500 cursor-pointer">
-          <Heart size={18} />
-          <span className="absolute -top-1 -right-1 flex h-4 w-4 items-center justify-center rounded-full bg-text-blue text-[10px] font-bold text-text-light">
-            {favorite.length}
-          </span>
-        </button>
+        <Link href="/favorite">
+          <button className="relative flex items-center justify-center rounded-lg px-3 h-10 bg-transparent text-gray-600 dark:text-gray-300 hover:bg-gray-500/10 border border-gray-500 cursor-pointer">
+            <Heart size={18} />
+            <span className="absolute -top-1 -right-1 flex h-4 w-4 items-center justify-center rounded-full bg-text-blue text-[10px] font-bold text-text-light">
+              {favorite.length}
+            </span>
+          </button>
+        </Link>
         <Link href="/cart">
           <button className="relative flex items-center justify-center rounded-lg h-10 bg-transparent text-gray-600 dark:text-gray-300 hover:bg-gray-500/10 px-3 border border-gray-500 cursor-pointer">
             <ShoppingCart size={18} />
