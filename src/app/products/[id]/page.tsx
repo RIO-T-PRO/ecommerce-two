@@ -49,8 +49,8 @@ const Page = () => {
   const quantity = cartItem?.cartQuantity;
 
   return (
-    <div className="min-h-screen bg-background-dark">
-      <main className="w-full max-w-7xl px-11 py-6">
+    <div className="min-h-screen bg-background-dark px-4 md:px-8 py-6">
+      <main className="w-full max-w-7xl">
         <div className="mb-4">
           <div className="flex flex-wrap gap-2">
             <Link

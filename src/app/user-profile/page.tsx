@@ -3,29 +3,40 @@
 import { User, Heart, Package, Settings, Edit, Eye } from "lucide-react";
 
 const UserProfilePage = () => {
+  const tabs = [
+    { icon: User, label: "Profile", active: true },
+    { icon: Heart, label: "Wishlist" },
+    { icon: Package, label: "Orders" },
+    { icon: Settings, label: "Settings" },
+  ];
+
   return (
-    <div className="min-h-screen bg-background-dark p-4 md:p-8">
-      <div className="max-w-4xl mx-auto">
+    <div className="min-h-screen bg-background-dark p-4 md:px-8 pt-6">
+      <div className="max-w-5xl mx-auto">
         {/* Profile Header */}
-        <div className="bg-card-bg rounded-xl border border-border-light p-6 mb-6">
-          <div className="flex flex-col md:flex-row gap-6 items-center md:items-start">
+        <div className="bg-card-bg rounded-xl border border-border-light p-4 mb-4">
+          <div className="flex flex-col sm:flex-row gap-4 items-center sm:items-start">
             <img
               src="https://lh3.googleusercontent.com/aida-public/AB6AXuCSsVT5mCATwHHNyRoRW_VGsQhu0Jv02XdQdp3VHpbRrvVvBcSJQaRKPcQGSPhs_K9VgSy1TLVeyhRJSAyQnLRu1z3gxrP4C2un4lzbdnZUrwSf1vNjpsnY0jqv1Y-fSDTM88UkG9wvj1dHqvqGIKG5toBFhQHcA2FXfuC17Q6NbFgHvckrRDJn_oZY_miNV47hOrwts0W_IlD45AGIdkvdnV3oAU_Jd06PiYg-mIstNIbvCEa2cPApmW7EmQmoUhs2MqwDfSP4j30"
               alt="Eleanor Vance"
-              className="rounded-xl h-24 w-24 object-cover border-2 border-text-blue/20"
+              className="rounded-xl h-16 w-16 object-cover border border-text-blue/20"
             />
-            <div className="flex-1 text-center md:text-left">
-              <h1 className="text-text-light text-2xl font-bold">
+
+            <div className="flex-1 text-center sm:text-left">
+              <h1 className="text-text-light text-xl font-bold">
                 Eleanor Vance
               </h1>
-              <p className="text-text-muted mt-1">eleanor.vance@example.com</p>
-              <div className="flex gap-2 justify-center md:justify-start mt-3">
-                <button className="px-4 py-2 bg-white/10 text-text-light text-sm rounded-lg hover:bg-white/20">
-                  <Edit className="inline w-4 h-4 mr-2" />
+              <p className="text-text-muted text-sm mt-1">
+                eleanor.vance@example.com
+              </p>
+
+              <div className="flex gap-2 justify-center sm:justify-start mt-3">
+                <button className="px-3 py-1.5 bg-white/10 text-text-light text-sm rounded-lg hover:bg-white/20">
+                  <Edit className="inline w-4 h-4 mr-1" />
                   Edit
                 </button>
-                <button className="px-4 py-2 bg-text-blue text-text-light text-sm rounded-lg hover:bg-text-blue/90">
-                  <Eye className="inline w-4 h-4 mr-2" />
+                <button className="px-3 py-1.5 bg-text-blue text-text-light text-sm rounded-lg hover:bg-text-blue/90">
+                  <Eye className="inline w-4 h-4 mr-1" />
                   View Public
                 </button>
               </div>
@@ -33,17 +44,12 @@ const UserProfilePage = () => {
           </div>
         </div>
 
-        {/* Navigation */}
-        <div className="flex border-b border-border-light mb-6 overflow-x-auto">
-          {[
-            { icon: User, label: "Profile", active: true },
-            { icon: Heart, label: "Wishlist" },
-            { icon: Package, label: "Orders" },
-            { icon: Settings, label: "Settings" },
-          ].map((item, idx) => (
+        {/* Tabs */}
+        <div className="flex border-b border-border-light mb-4 overflow-x-auto">
+          {tabs.map((item, idx) => (
             <button
               key={idx}
-              className={`flex items-center gap-2 px-4 py-3 whitespace-nowrap ${
+              className={`flex items-center gap-2 px-4 py-2 whitespace-nowrap ${
                 item.active
                   ? "text-text-light border-b-2 border-text-blue"
                   : "text-text-muted hover:text-text-light"
@@ -55,134 +61,61 @@ const UserProfilePage = () => {
           ))}
         </div>
 
-        {/* Form */}
-        <div className="bg-card-bg rounded-xl border border-border-light p-6">
-          <h2 className="text-text-light text-xl font-bold mb-6">
-            Personal Information
-          </h2>
+        {/* Content */}
+        <div className="flex flex-col lg:flex-row gap-4">
+          {/* Personal Info */}
+          <div className="flex-1 bg-card-bg rounded-xl border border-border-light p-4">
+            <h2 className="text-text-light text-lg font-bold mb-4">
+              Personal Information
+            </h2>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
-            <div>
-              <label className="text-text-light text-sm block mb-2">
-                First Name
-              </label>
-              <input
-                value="Eleanor"
-                className="w-full bg-section-bg border border-border-light rounded-lg px-3 py-2 text-text-light"
-              />
-            </div>
-            <div>
-              <label className="text-text-light text-sm block mb-2">
-                Last Name
-              </label>
-              <input
-                value="Vance"
-                className="w-full bg-section-bg border border-border-light rounded-lg px-3 py-2 text-text-light"
-              />
-            </div>
-            <div className="md:col-span-2">
-              <label className="text-text-light text-sm block mb-2">
-                Email
-              </label>
-              <input
-                value="eleanor.vance@example.com"
-                className="w-full bg-section-bg border border-border-light rounded-lg px-3 py-2 text-text-light"
-              />
-            </div>
-            <div>
-              <label className="text-text-light text-sm block mb-2">
-                Phone
-              </label>
-              <input
-                placeholder="Add phone"
-                className="w-full bg-section-bg border border-border-light rounded-lg px-3 py-2 text-text-light"
-              />
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              {["First Name", "Last Name", "Email", "Phone"].map(
+                (label, idx) => (
+                  <div key={label} className={idx === 2 ? "sm:col-span-2" : ""}>
+                    <label className="text-text-light text-sm block mb-1">
+                      {label}
+                    </label>
+                    <input
+                      placeholder={label}
+                      className="w-full bg-section-bg border border-border-light rounded px-3 py-2 text-base text-text-light placeholder:text-text-muted outline-none"
+                    />
+                  </div>
+                )
+              )}
             </div>
           </div>
 
-          <h2 className="text-text-light text-xl font-bold mb-6">
-            Shipping Address
-          </h2>
+          {/* Shipping */}
+          <div className="flex-1 bg-card-bg rounded-xl border border-border-light p-4">
+            <h2 className="text-text-light text-lg font-bold mb-4">Shipping</h2>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
-            <div className="md:col-span-2">
-              <label className="text-text-light text-sm block mb-2">
-                Address
-              </label>
-              <input
-                value="456 Oak Avenue"
-                className="w-full bg-section-bg border border-border-light rounded-lg px-3 py-2 text-text-light"
-              />
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              {["Address", "City", "State", "Zip Code", "Country"].map(
+                (label, idx) => (
+                  <div key={label} className={idx === 0 ? "sm:col-span-2" : ""}>
+                    <label className="text-text-light text-sm block mb-1">
+                      {label}
+                    </label>
+                    <input
+                      placeholder={label}
+                      className="w-full bg-section-bg border border-border-light rounded px-3 py-2 text-base text-text-light placeholder:text-text-muted outline-none"
+                    />
+                  </div>
+                )
+              )}
             </div>
-            <div>
-              <label className="text-text-light text-sm block mb-2">City</label>
-              <input
-                value="Springfield"
-                className="w-full bg-section-bg border border-border-light rounded-lg px-3 py-2 text-text-light"
-              />
-            </div>
-            <div>
-              <label className="text-text-light text-sm block mb-2">
-                State
-              </label>
-              <input
-                value="Illinois"
-                className="w-full bg-section-bg border border-border-light rounded-lg px-3 py-2 text-text-light"
-              />
-            </div>
-            <div>
-              <label className="text-text-light text-sm block mb-2">
-                Zip Code
-              </label>
-              <input
-                value="62704"
-                className="w-full bg-section-bg border border-border-light rounded-lg px-3 py-2 text-text-light"
-              />
-            </div>
-            <div>
-              <label className="text-text-light text-sm block mb-2">
-                Country
-              </label>
-              <input
-                value="United States"
-                className="w-full bg-section-bg border border-border-light rounded-lg px-3 py-2 text-text-light"
-              />
-            </div>
-          </div>
-
-          <div className="flex justify-end gap-3">
-            <button className="px-6 py-3 bg-white/10 text-text-light rounded-lg hover:bg-white/20">
-              Cancel
-            </button>
-            <button className="px-6 py-3 bg-text-blue text-text-light rounded-lg hover:bg-text-blue/90">
-              Save Changes
-            </button>
           </div>
         </div>
 
-        {/* Stats */}
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-6">
-          <div className="bg-card-bg rounded-xl border border-border-light p-4">
-            <div className="flex items-center gap-2 mb-2">
-              <Package className="text-text-blue w-5 h-5" />
-              <span className="text-text-light font-medium">Orders</span>
-            </div>
-            <p className="text-text-light text-2xl font-bold">24</p>
-          </div>
-          <div className="bg-card-bg rounded-xl border border-border-light p-4">
-            <div className="flex items-center gap-2 mb-2">
-              <Heart className="text-text-blue w-5 h-5" />
-              <span className="text-text-light font-medium">Wishlist</span>
-            </div>
-            <p className="text-text-light text-2xl font-bold">12</p>
-          </div>
-          <div className="bg-card-bg rounded-xl border border-border-light p-4">
-            <div className="flex items-center gap-2 mb-2">
-              <User className="text-text-blue w-5 h-5" />
-              <span className="text-text-light font-medium">Years</span>
-            </div>
-            <p className="text-text-light text-2xl font-bold">3+</p>
-          </div>
+        {/* Actions */}
+        <div className="flex justify-end gap-3 mt-6">
+          <button className="px-5 py-2 bg-white/10 text-text-light text-sm rounded-lg hover:bg-white/20">
+            Cancel
+          </button>
+          <button className="px-5 py-2 bg-text-blue text-text-light text-sm rounded-lg hover:bg-text-blue/90">
+            Save Changes
+          </button>
         </div>
       </div>
     </div>

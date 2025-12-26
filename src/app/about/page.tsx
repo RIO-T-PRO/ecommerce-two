@@ -14,7 +14,7 @@ const AboutPage = () => {
   return (
     <div className="min-h-screen bg-background-dark">
       <main className="grow">
-        <div className="max-w-7xl px-4 sm:px-6 lg:px-11 py-8">
+        <div className="max-w-7xl px-4 md:px-8 py-8">
           <div>
             <div className="relative overflow-hidden rounded-2xl min-h-[400px] shadow-2xl">
               <div className="absolute inset-0">

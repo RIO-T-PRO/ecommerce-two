@@ -57,7 +57,7 @@ const CheckoutPage = () => {
 
   return (
     <div className="bg-background-dark">
-      <div className="container px-11 py-10 lg:grid lg:grid-cols-3 lg:gap-8">
+      <div className="container px-4 md:px-8 py-10 lg:grid lg:grid-cols-3 lg:gap-8">
         <div className="lg:col-span-2 flex flex-col gap-6">
           <div className="flex flex-wrap gap-2 mb-3">
             <a

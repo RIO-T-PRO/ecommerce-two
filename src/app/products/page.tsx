@@ -11,9 +11,9 @@ const Products = () => {
 
   return (
     <div>
-      <div className="px-3 pb-6 bg-background-dark">
-        <div className="flex bg-yellow">
-          <main className="flex-1 px-8 py-4">
+      <div className="pb-6 bg-background-dark">
+        <div className="flex ">
+          <main className="flex-1 p-4 md:px-8">
             <div className="mb-4">
               <div className="flex items-center justify-between mb-2">
                 <h2 className="text-xl font-bold text-text-light">Store</h2>

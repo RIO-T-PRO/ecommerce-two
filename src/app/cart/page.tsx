@@ -11,7 +11,7 @@ const CartPage = () => {
   const isInCart = cart.length;
 
   return (
-    <div className="min-h-screen bg-background-dark py-6 px-11">
+    <div className="min-h-screen bg-background-dark py-6 px-4 md:px-8">
       <main className="w-full max-w-7xl">
         <div className="flex flex-wrap gap-2 mb-3">
           <a

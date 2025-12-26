@@ -37,7 +37,7 @@ const ContactPage = () => {
 
   return (
     <div className="min-h-screen bg-background-dark">
-      <main className="px-6 lg:px-11 py-6">
+      <main className="px-4 md:px-8 py-6">
         <div className="max-w-7xl">
           <div className="mb-6">
             <h1 className="text-text-light text-2xl lg:text-3xl font-semibold">
