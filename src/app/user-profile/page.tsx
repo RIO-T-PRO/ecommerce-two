@@ -1,14 +1,120 @@
 "use client";
 
 import { User, Heart, Package, Settings, Edit, Eye } from "lucide-react";
+import { useState } from "react";
+import { LucideIcon } from "lucide-react";
+import FavoritesTab from "@/components/user-profile/favorites-tab";
+import OrdersTab from "@/components/user-profile/orders-tab";
+import SettingsTab from "@/components/user-profile/settings";
+
+type TabKey = "profile" | "wishlist" | "orders" | "settings";
+
+interface TabItem {
+  key: TabKey;
+  icon: LucideIcon;
+  label: string;
+}
 
 const UserProfilePage = () => {
-  const tabs = [
-    { icon: User, label: "Profile", active: true },
-    { icon: Heart, label: "Wishlist" },
-    { icon: Package, label: "Orders" },
-    { icon: Settings, label: "Settings" },
+  const [selectedTab, setSelectedTab] = useState<TabKey>("profile");
+
+  const tabs: TabItem[] = [
+    { key: "profile", icon: User, label: "Profile" },
+    { key: "wishlist", icon: Heart, label: "Wishlist" },
+    { key: "orders", icon: Package, label: "Orders" },
+    { key: "settings", icon: Settings, label: "Settings" },
   ];
+
+  const formData = ["First Name", "Last Name", "Email", "Phone"];
+  const formData2 = ["Address", "City", "State", "Zip Code", "Country"];
+
+  const renderTabContent = () => {
+    switch (selectedTab) {
+      case "profile":
+        return (
+          <>
+            <div className="flex flex-col lg:flex-row gap-3">
+              <div className="flex-1 bg-card-bg rounded-xl border border-border-light p-4">
+                <h2 className="text-text-light text-lg font-bold mb-4">
+                  Personal Information
+                </h2>
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  {formData.map((label, idx) => (
+                    <div
+                      key={label}
+                      className={idx === 2 ? "sm:col-span-2" : ""}
+                    >
+                      <label className="text-text-light text-sm block mb-1">
+                        {label}
+                      </label>
+                      <input
+                        placeholder={label}
+                        className="w-full bg-section-bg border border-border-light rounded px-3 py-2 text-base text-text-light placeholder:text-text-muted outline-none"
+                      />
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <div className="flex-1 bg-card-bg rounded-xl border border-border-light p-4">
+                <h2 className="text-text-light text-lg font-bold mb-4">
+                  Shipping
+                </h2>
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  {formData2.map((label, idx) => (
+                    <div
+                      key={label}
+                      className={idx === 0 ? "sm:col-span-2" : ""}
+                    >
+                      <label className="text-text-light text-sm block mb-1">
+                        {label}
+                      </label>
+                      <input
+                        placeholder={label}
+                        className="w-full bg-section-bg border border-border-light rounded px-3 py-2 text-base text-text-light placeholder:text-text-muted outline-none"
+                      />
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            <div className="flex justify-end gap-3 mt-2">
+              <button className="px-5 py-2 bg-white/10 text-text-light text-sm rounded-lg hover:bg-white/20">
+                Cancel
+              </button>
+              <button className="px-5 py-2 bg-text-blue text-text-light text-sm rounded-lg hover:bg-text-blue/90">
+                Save Changes
+              </button>
+            </div>
+          </>
+        );
+
+      case "wishlist":
+        return (
+          <div className="bg-card-bg rounded-xl border border-border-light p-6">
+            <h2 className="text-text-light text-lg font-bold mb-4">
+              Your Wishlist
+            </h2>
+            <p className="text-text-muted">
+              Your wishlist items will appear here.
+            </p>
+            <FavoritesTab />
+          </div>
+        );
+
+      case "orders":
+        return <OrdersTab />;
+
+      case "settings":
+        return <SettingsTab />;
+
+      default:
+        return null;
+    }
+  };
 
   return (
     <div className="min-h-screen bg-background-dark p-4 md:px-8 pt-6">
@@ -44,13 +150,13 @@ const UserProfilePage = () => {
           </div>
         </div>
 
-        {/* Tabs */}
         <div className="flex border-b border-border-light mb-4 overflow-x-auto">
-          {tabs.map((item, idx) => (
+          {tabs.map((item) => (
             <button
-              key={idx}
-              className={`flex items-center gap-2 px-4 py-2 whitespace-nowrap ${
-                item.active
+              key={item.key}
+              onClick={() => setSelectedTab(item.key)}
+              className={`flex items-center gap-2 px-4 py-2 whitespace-nowrap transition-colors ${
+                selectedTab === item.key
                   ? "text-text-light border-b-2 border-text-blue"
                   : "text-text-muted hover:text-text-light"
               }`}
@@ -61,62 +167,8 @@ const UserProfilePage = () => {
           ))}
         </div>
 
-        {/* Content */}
-        <div className="flex flex-col lg:flex-row gap-4">
-          {/* Personal Info */}
-          <div className="flex-1 bg-card-bg rounded-xl border border-border-light p-4">
-            <h2 className="text-text-light text-lg font-bold mb-4">
-              Personal Information
-            </h2>
-
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              {["First Name", "Last Name", "Email", "Phone"].map(
-                (label, idx) => (
-                  <div key={label} className={idx === 2 ? "sm:col-span-2" : ""}>
-                    <label className="text-text-light text-sm block mb-1">
-                      {label}
-                    </label>
-                    <input
-                      placeholder={label}
-                      className="w-full bg-section-bg border border-border-light rounded px-3 py-2 text-base text-text-light placeholder:text-text-muted outline-none"
-                    />
-                  </div>
-                )
-              )}
-            </div>
-          </div>
-
-          {/* Shipping */}
-          <div className="flex-1 bg-card-bg rounded-xl border border-border-light p-4">
-            <h2 className="text-text-light text-lg font-bold mb-4">Shipping</h2>
-
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              {["Address", "City", "State", "Zip Code", "Country"].map(
-                (label, idx) => (
-                  <div key={label} className={idx === 0 ? "sm:col-span-2" : ""}>
-                    <label className="text-text-light text-sm block mb-1">
-                      {label}
-                    </label>
-                    <input
-                      placeholder={label}
-                      className="w-full bg-section-bg border border-border-light rounded px-3 py-2 text-base text-text-light placeholder:text-text-muted outline-none"
-                    />
-                  </div>
-                )
-              )}
-            </div>
-          </div>
-        </div>
-
-        {/* Actions */}
-        <div className="flex justify-end gap-3 mt-6">
-          <button className="px-5 py-2 bg-white/10 text-text-light text-sm rounded-lg hover:bg-white/20">
-            Cancel
-          </button>
-          <button className="px-5 py-2 bg-text-blue text-text-light text-sm rounded-lg hover:bg-text-blue/90">
-            Save Changes
-          </button>
-        </div>
+        {/* Tab Content */}
+        {renderTabContent()}
       </div>
     </div>
   );
