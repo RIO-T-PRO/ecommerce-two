@@ -1,104 +1,112 @@
 "use client";
 import { useState } from "react";
 import Link from "next/link";
+import { CheckCircle2, Key } from "lucide-react";
+
 const ForgotPasswordPage = () => {
   const [email, setEmail] = useState("");
   const [isSubmitted, setIsSubmitted] = useState(false);
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     console.log("Sending reset link to:", email);
     setIsSubmitted(true);
   };
+
   if (isSubmitted) {
     return (
-      <div className="min-h-screen bg-background-dark font-display text-text-light">
-        <div className="relative flex min-h-screen w-full flex-col items-center justify-center p-4">
-          <div className="flex w-full max-w-md flex-col items-center gap-6 rounded-xl border border-border-light bg-card-bg p-6 shadow-2xl backdrop-blur-sm sm:p-8">
-            <div className="flex h-12 w-12 items-center justify-center rounded-full bg-text-blue/20 text-text-blue">
-              <span className="material-symbols-outlined text-3xl">
-                check_circle
-              </span>
-            </div>
-            <div className="flex w-full flex-col gap-2 text-center">
-              <h1 className="text-2xl font-bold leading-tight tracking-tight text-text-light">
-                Check Your Email
-              </h1>
-              <p className="text-base font-normal text-text-muted">
-                We&apos;ve sent a password reset link to{" "}
-                <strong>{email}</strong>
-              </p>
-            </div>
-            <div className="w-full text-center">
-              <p className="text-sm text-text-muted mb-4">
-                Didn&apos;t receive the email? Check your spam folder or
-              </p>
-              <button
-                onClick={() => setIsSubmitted(false)}
-                className="text-text-blue hover:underline"
+      <div className="min-h-screen bg-background-dark">
+        <div className="flex items-center justify-center p-4">
+          <main className="w-full max-w-sm">
+            <div className="border border-border-light rounded-xl bg-card-bg p-6 shadow-2xl shadow-black/20">
+              <div className="flex h-10 w-10 items-center justify-center rounded-full bg-text-blue/20 mx-auto mb-4">
+                <CheckCircle2 className="h-5 w-5 text-text-blue" />
+              </div>
+              <div className="text-center mb-4">
+                <h1 className="text-text-light text-2xl font-bold mb-1">
+                  Check Your Email
+                </h1>
+                <p className="text-sm text-text-muted">
+                  We&apos;ve sent a password reset link to{" "}
+                  <strong>{email}</strong>
+                </p>
+              </div>
+              <div className="text-center mb-4">
+                <p className="text-xs text-text-muted mb-2">
+                  Didn&apos;t receive the email? Check your spam folder or
+                </p>
+                <button
+                  onClick={() => setIsSubmitted(false)}
+                  className="text-sm text-text-blue hover:underline"
+                >
+                  Try another email address
+                </button>
+              </div>
+              <Link
+                href="/auth/login"
+                className="text-xs text-text-muted underline hover:text-text-light block text-center"
               >
-                Try another email address
-              </button>
+                Back to Sign In
+              </Link>
             </div>
-            <Link
-              href="/auth/login"
-              className="text-sm font-normal leading-normal text-text-muted underline transition-colors hover:text-text-light"
-            >
-              Back to Sign In
-            </Link>
-          </div>
+          </main>
         </div>
       </div>
     );
   }
+
   return (
-    <div className="min-h-screen bg-background-dark font-display text-text-light">
-      <div className="relative flex min-h-screen w-full flex-col items-center justify-center p-4">
-        <div className="flex w-full max-w-md flex-col items-center gap-6 rounded-xl border border-border-light bg-card-bg p-6 shadow-2xl backdrop-blur-sm sm:p-8">
-          <div className="flex h-12 w-12 items-center justify-center rounded-full bg-text-blue/20 text-text-blue">
-            <span className="material-symbols-outlined text-3xl">key</span>
-          </div>
-          <div className="flex w-full flex-col gap-2 text-center">
-            <h1 className="text-3xl font-bold leading-tight tracking-tight text-text-light">
-              Forgot Your Password?
-            </h1>
-            <p className="text-base font-normal text-text-muted">
-              No problem. Enter the email address associated with your account
-              and we&apos;ll send you a link to reset your password.
-            </p>
-          </div>
-          <form className="w-full" onSubmit={handleSubmit}>
-            <label className="flex w-full flex-col">
-              <p className="pb-2 text-sm font-medium leading-normal text-text-light">
-                Email Address
+    <div className="min-h-screen bg-background-dark">
+      <div className="flex items-center justify-center p-4">
+        <main className="w-full max-w-sm">
+          <div className="border border-border-light rounded-xl bg-card-bg p-6 shadow-2xl shadow-black/20">
+            <div className="flex h-10 w-10 items-center justify-center rounded-full bg-text-blue/20 mx-auto mb-4">
+              <Key className="h-5 w-5 text-text-blue" />
+            </div>
+            <div className="text-center mb-4">
+              <h1 className="text-text-light text-2xl font-bold mb-1">
+                Forgot Your Password?
+              </h1>
+              <p className="text-sm text-text-muted">
+                No problem. Enter the email address associated with your account
+                and we&apos;ll send you a link to reset your password.
               </p>
-              <input
-                className="h-12 w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg border border-border-light bg-section-bg p-3 text-base font-normal leading-normal text-text-light placeholder:text-text-muted focus:border-text-blue focus:outline-0 focus:ring-2 focus:ring-text-blue/50"
-                placeholder="you@example.com"
-                type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                required
-              />
-            </label>
-            <div className="mt-6 w-full">
+            </div>
+            <form className="flex flex-col gap-3" onSubmit={handleSubmit}>
+              <label className="flex flex-col">
+                <p className="text-text-light text-sm font-medium pb-1">
+                  Email Address
+                </p>
+                <input
+                  className="w-full rounded-lg text-text-light outline-none border border-border-light bg-section-bg h-10 placeholder:text-text-muted px-3 text-sm"
+                  placeholder="you@example.com"
+                  type="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  required
+                />
+              </label>
               <button
                 type="submit"
-                className="flex h-12 w-full min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-lg bg-text-blue px-5 text-base font-bold leading-normal tracking-[0.015em] text-text-light transition-opacity hover:opacity-90 disabled:opacity-50 disabled:cursor-not-allowed"
+                className="w-full rounded-lg h-10 mt-2 bg-text-blue text-text-light text-sm font-bold hover:bg-text-blue/90 transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed border border-border-light"
                 disabled={!email}
               >
-                <span className="truncate">Send Reset Link</span>
+                Send Reset Link
               </button>
+            </form>
+            <div className="mt-4 text-center">
+              <Link
+                href="/auth/login"
+                className="text-xs text-text-muted underline hover:text-text-light"
+              >
+                Back to Sign In
+              </Link>
             </div>
-          </form>
-          <Link
-            href="/auth/login"
-            className="text-sm font-normal leading-normal text-text-muted underline transition-colors hover:text-text-light"
-          >
-            Back to Sign In
-          </Link>
-        </div>
+          </div>
+        </main>
       </div>
     </div>
   );
 };
+
 export default ForgotPasswordPage;
