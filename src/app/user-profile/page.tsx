@@ -167,7 +167,6 @@ const UserProfilePage = () => {
           ))}
         </div>
 
-        {/* Tab Content */}
         {renderTabContent()}
       </div>
     </div>

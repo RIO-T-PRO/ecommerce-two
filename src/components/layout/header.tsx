@@ -63,9 +63,11 @@ const Header = () => {
 
         <div className="flex items-center gap-4.5">
           {!isSignedIn && (
-            <button className="flex items-center justify-center rounded-lg px-4 h-10 bg-text-blue whitespace-nowrap text-text-light cursor-pointer hover:bg-text-primary/80 transition-colors">
-              Sign up
-            </button>
+            <Link href="auth/sign-up">
+              <button className="flex items-center justify-center rounded-lg px-4 h-10 bg-text-blue whitespace-nowrap text-text-light cursor-pointer hover:bg-text-primary/80 transition-colors">
+                Sign up
+              </button>
+            </Link>
           )}
 
           <Link href="/favorite">
