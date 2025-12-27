@@ -1,17 +1,14 @@
 "use client";
 import { useState } from "react";
 import Link from "next/link";
-
 const LoginPage = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     console.log({ email, password });
   };
-
   return (
     <div className="min-h-screen bg-background-dark font-display">
       <div className="relative flex min-h-screen w-full flex-col items-center justify-center p-4">
@@ -64,7 +61,7 @@ const LoginPage = () => {
                     Password
                   </p>
                   <Link
-                    href="/forgot-password"
+                    href="/auth/forgot-password"
                     className="text-text-blue text-sm font-medium leading-normal underline hover:no-underline"
                   >
                     Forgot Password?
@@ -101,7 +98,7 @@ const LoginPage = () => {
               <p className="text-text-muted text-sm font-normal">
                 Don&apos;t have an account?
                 <Link
-                  href="/auth/signup"
+                  href="/auth/sign-up"
                   className="font-medium text-text-blue hover:underline ml-1"
                 >
                   Sign Up
@@ -114,5 +111,4 @@ const LoginPage = () => {
     </div>
   );
 };
-
 export default LoginPage;
