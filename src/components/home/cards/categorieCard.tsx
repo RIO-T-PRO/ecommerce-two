@@ -1,4 +1,5 @@
 import { CategoriesSection } from "@/data/categories";
+import Link from "next/link";
 
 interface CategoriesSectionProps {
   category: CategoriesSection;
@@ -15,16 +16,18 @@ const CategoryCard: React.FC<CategoriesSectionProps> = ({ category }) => {
         />
         <div className="absolute inset-0 bg-linear-to-t from-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
       </div>
-      <div className="flex items-start justify-between">
-        <div>
-          <p className="text-base font-medium text-text-light">
-            {category.title}
-          </p>
-          <p className="text-sm font-normal text-text-muted">
-            {category.itemCount} items
-          </p>
+      <Link href="/products">
+        <div className="flex items-start justify-between">
+          <div>
+            <p className="text-base font-medium text-text-light">
+              {category.title}
+            </p>
+            <p className="text-sm font-normal text-text-muted">
+              {category.itemCount} items
+            </p>
+          </div>
         </div>
-      </div>
+      </Link>
     </div>
   );
 };

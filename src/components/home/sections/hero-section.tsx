@@ -33,7 +33,7 @@ const HeroSection = () => {
       </div>
       <div className="rounded-xl overflow-hidden border border-gray-800">
         <img
-          src="https://images.unsplash.com/photo-1489749798305-4fea3ba63d60?w=600&h=600&fit=crop"
+          src="https://plus.unsplash.com/premium_photo-1661368873079-5ccd41284d1d?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
           alt="Fashion Model"
           className="w-full h-[400px] object-cover rounded-xl"
         />
